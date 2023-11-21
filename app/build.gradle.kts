@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.hachatml.blackjack"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.hachatml.blackjack"
