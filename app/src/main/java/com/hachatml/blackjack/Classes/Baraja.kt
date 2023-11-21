@@ -1,6 +1,7 @@
 package com.hachatml.blackjack.Classes
 
 import androidx.compose.runtime.Composable
+import com.hachatml.blackjack.R
 import com.hachatml.cartamasalta.enums.Naipes
 import com.hachatml.cartamasalta.enums.Palos
 
@@ -30,6 +31,7 @@ class Baraja {
                         pointsMax = 10
                     }
                 }
+                idDrawable = R.drawable.corazones_10
                 val cartaTemp = Carta(naipe, palo, pointsMin, pointsMax, idDrawable)
                 listaCartas.add(cartaTemp)
             }
