@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.hachatml.blackjack.screens.Jugador_vs_Jugador
+import com.hachatml.blackjack.screens.MainColumn
 import com.hachatml.blackjack.ui.theme.BlackJackTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                Jugador_vs_Jugador().MainColumn()
+                MainColumn()
                 }
             }
         }
