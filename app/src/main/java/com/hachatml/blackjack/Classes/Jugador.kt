@@ -20,8 +20,7 @@ class Jugador {
     fun sePlanta() {
         plantado = true
     }
-
-
+    
     @Composable
     fun PintarMano() {
         Mano.add(Carta(Naipes.AS, Palos.TREBOLES, 1, 10, R.drawable.picas_10)) //todo ctp
@@ -44,6 +43,6 @@ class Jugador {
     }
 
     fun RobarCarta() {
-    Mano.add(Baraja.dameCarta())
+        Mano.add(Baraja.dameCarta())
     }
 }

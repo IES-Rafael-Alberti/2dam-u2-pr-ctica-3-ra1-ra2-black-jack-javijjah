@@ -1,5 +1,6 @@
 package com.hachatml.blackjack.screens
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,10 +21,9 @@ class Jugador_vs_Jugador {
     var jugador2 = Jugador()
 
 
-    @Preview(showBackground = true)
     @Composable
-    fun MainColumn() {
-        ComenzarPartida()
+    fun MainColumn(context: Context) {
+        ComenzarPartida(context)
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -71,9 +71,9 @@ class Jugador_vs_Jugador {
     }
 
     @Composable
-    fun ComenzarPartida() {
+    fun ComenzarPartida(context: Context) {
         var baraja = Baraja()
-        baraja.crearBaraja()
+        Baraja.crearBaraja(context)
         jugador1.suTurno = true
     }
     fun cambioDeTurno() {
