@@ -72,7 +72,6 @@ fun MainColumn(context: Context) {
     }
 }
 
-
 @Composable
 fun PintarMano(jugador: Jugador) {
     //jugador.Mano.add(Carta(Naipes.AS, Palos.TREBOLES, 1, 10, R.drawable.picas_10)) //todo ctp
