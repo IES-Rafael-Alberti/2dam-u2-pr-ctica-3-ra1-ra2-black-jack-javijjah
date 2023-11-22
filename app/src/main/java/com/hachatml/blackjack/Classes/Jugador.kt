@@ -44,6 +44,6 @@ class Jugador {
     }
 
     fun RobarCarta() {
-        Mano.add(Carta(Naipes.CUATRO, Palos.PICAS, 3, 5, R.drawable.corazones_2)) //todo ctp
+    Mano.add(Baraja.dameCarta())
     }
 }
