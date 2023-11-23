@@ -14,7 +14,6 @@ class Carta(
     var puntosMax: Int,
     var idDrawable: Int
 ) {
-    //todo getDrawableResource
     companion object {
         fun getDrawableResource(naipe: Naipes, palo: Palos, context: Context): Int {
             var nombreRes = ""

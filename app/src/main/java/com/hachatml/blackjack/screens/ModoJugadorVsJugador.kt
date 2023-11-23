@@ -74,8 +74,6 @@ fun MainColumn(context: Context) {
 
 @Composable
 fun PintarMano(jugador: Jugador) {
-    //jugador.Mano.add(Carta(Naipes.AS, Palos.TREBOLES, 1, 10, R.drawable.picas_10)) //todo ctp
-    //jugador.Mano.add(Carta(Naipes.CUATRO, Palos.CORAZONES, 1, 10, R.drawable.picas_2)) //todo ctp
     println("PintarMano llamado")
     for (card in jugador.Mano) {
         if (jugador.suTurno) {

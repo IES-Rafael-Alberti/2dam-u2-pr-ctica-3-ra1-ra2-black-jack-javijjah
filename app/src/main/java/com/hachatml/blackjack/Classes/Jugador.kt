@@ -20,11 +20,9 @@ class Jugador {
     fun sePlanta() {
         plantado = true
     }
-    
+
     @Composable
     fun PintarMano() {
-        Mano.add(Carta(Naipes.AS, Palos.TREBOLES, 1, 10, R.drawable.picas_10)) //todo ctp
-        Mano.add(Carta(Naipes.AS, Palos.TREBOLES, 1, 10, R.drawable.picas_2)) //todo ctp
         for (card in Mano) {
             if (suTurno) {
                 Image(

@@ -11,9 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.hachatml.blackjack.screens.Jugador_vs_Jugador
 import com.hachatml.blackjack.screens.MainColumn
 import com.hachatml.blackjack.ui.theme.BlackJackTheme
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.hachatml.blackjack.screens.MainMenu
+import com.hachatml.blackjack.screens.ModoPVP
+import com.hachatml.blackjack.screens.Routes
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,25 +32,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                MainColumn(context = LocalContext.current)
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Routes.MainMenu.route
+                    ) {
+                        composable(Routes.MainMenu.route) { ModoPVP(navController) }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BlackJackTheme {
-        Greeting("Android")
     }
 }
