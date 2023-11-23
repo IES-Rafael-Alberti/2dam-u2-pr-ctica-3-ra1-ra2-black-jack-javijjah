@@ -18,18 +18,17 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
-class MainMenu {
-    @Preview(showBackground = true)
     @Composable
-    fun TitleAndButtons(){
+    fun TitleAndButtons(navController: NavHostController){
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxSize().padding(10.dp)
         ) {
             Text(text = "BLACKJACK", fontSize = 50.sp,modifier = Modifier.padding(20.dp))
-            Button(onClick = { /*TODO llevar a una screen*/ },modifier = Modifier.padding(20.dp)) {
+            Button(onClick = { navController.navigate(Routes.ModoPVP.route) },modifier = Modifier.padding(20.dp)) {
                 Text(text = "Jugador vs Jugador")
             }
             Button(onClick = { /*TODO llevar a otra screen*/ },modifier = Modifier.padding(20.dp)) {
@@ -37,4 +36,3 @@ class MainMenu {
             }
         }
     }
-}

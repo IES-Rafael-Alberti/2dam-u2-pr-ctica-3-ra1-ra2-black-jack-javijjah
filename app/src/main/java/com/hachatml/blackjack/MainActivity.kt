@@ -18,9 +18,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.hachatml.blackjack.screens.MainMenu
-import com.hachatml.blackjack.screens.ModoPVP
 import com.hachatml.blackjack.screens.Routes
+import com.hachatml.blackjack.screens.TitleAndButtons
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +36,11 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = Routes.MainMenu.route
                     ) {
-                        composable(Routes.MainMenu.route) { ModoPVP(navController) }
-                }
+                        composable(Routes.MainMenu.route) { TitleAndButtons(navController = navController) }
+                        composable(Routes.ModoPVP.route) { MainColumn(context = LocalContext.current)}
+                    }
             }
         }
     }
+}
 }

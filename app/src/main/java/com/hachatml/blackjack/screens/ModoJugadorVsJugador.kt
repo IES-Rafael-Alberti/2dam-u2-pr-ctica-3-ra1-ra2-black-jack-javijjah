@@ -33,7 +33,7 @@ import com.hachatml.cartamasalta.enums.Palos
 @Preview(showBackground = true)
 @Composable
 fun MainColumnPreview() {
-var context = LocalContext.current
+    var context = LocalContext.current
     MainColumn(context)
 }
 
@@ -99,10 +99,11 @@ fun Botonera(jugador1: Jugador, jugador2: Jugador) {
         devolverJugadorActivo(jugador1, jugador2).RobarCarta()
         cambioDeTurno(jugador1, jugador2)
     }
-    ) { //todo ctp (codigo temporal prueba)
+    ) {
         Text(text = "Robar carta")
     }
-    Button(onClick = { devolverJugadorActivo(jugador1, jugador2).sePlanta() }) {
+    Button(onClick = { devolverJugadorActivo(jugador1, jugador2).sePlanta()
+    cambioDeTurno(jugador1,jugador2)}) {
         Text(text = "Plantarse")
     }
 }
@@ -120,6 +121,9 @@ fun cambioDeTurno(jugador1: Jugador, jugador2: Jugador) {
         jugador1.suTurno = !(jugador1.suTurno)
         jugador2.suTurno = !(jugador2.suTurno)
     }
+    if (jugador1.plantado && jugador2.plantado) {
+        finalizarPartida(jugador1,jugador2)
+    }
 }
 
 fun devolverJugadorActivo(jugador1: Jugador, jugador2: Jugador): Jugador {
@@ -127,4 +131,19 @@ fun devolverJugadorActivo(jugador1: Jugador, jugador2: Jugador): Jugador {
         return jugador1
     }
     return jugador2
+}
+
+fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
+    var puntuacionJugador1 = 0
+    var puntuacionJugador2 = 0
+    //todo
+    for (carta in jugador1.Mano) {
+        puntuacionJugador1 += carta.puntosMax
+    }
+    for (carta in jugador2.Mano) {
+        puntuacionJugador2 += carta.puntosMax
+    }
+    if (puntuacionJugador1>puntuacionJugador2){
+    println("hola")
+    }
 }
