@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,18 +34,17 @@ import com.hachatml.blackjack.R
 import com.hachatml.cartamasalta.enums.Naipes
 import com.hachatml.cartamasalta.enums.Palos
 
-
 @Preview(showBackground = true)
 @Composable
 fun MainColumnPreview() {
     var context = LocalContext.current
     MainColumn(context)
 }
-
+var partidaFinalizada = false
 @Composable
 fun MainColumn(context: Context) {
-    var jugador1 = Jugador()
-    var jugador2 = Jugador()
+    val jugador1 = Jugador()
+    val jugador2 = Jugador()
     ComenzarPartida(jugador1, context)
     Column(
         modifier = Modifier
@@ -77,6 +77,9 @@ fun MainColumn(context: Context) {
         ) {
             PintarMano(jugador1)
         }
+    }
+    if (partidaFinalizada){
+        AlertDialog(onDismissRequest = { partidaFinalizada=false }, confirmButton = { /*TODO*/ })//todo
     }
 }
 
@@ -152,7 +155,10 @@ fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
         puntuacionJugador2 += carta.puntosMax
     }
     //todo condiciones de victoria, preguntar cómo mostrar algo
-    if (puntuacionJugador1>puntuacionJugador2){
+    partidaFinalizada = true
+}
 
-    }
+@Composable
+fun cuadroVictoria(puntuacionJ1:Int,puntuacionJ2:Int){
+
 }
