@@ -17,11 +17,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.hachatml.blackjack.Classes.Baraja
 import com.hachatml.blackjack.Classes.Carta
 import com.hachatml.blackjack.Classes.Jugador
@@ -45,7 +49,10 @@ fun MainColumn(context: Context) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Green),
+            .paint(
+                painterResource(id = R.drawable.fondo),
+                contentScale = ContentScale.FillBounds
+            ),
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -57,11 +64,12 @@ fun MainColumn(context: Context) {
         {
             PintarMano(jugador2)
         }
-        Text(text = "Jugador 2")
+        Text(text = "Jugador 2", modifier = Modifier.rotate(-180f), color = Color.White, fontSize = 30.sp)
         Row {
             Botonera(jugador1, jugador2)
         }
-        Text(text = "Jugador 1")
+        //todo ver cómo hacer que el texto se vea mejor
+        Text(text = "Jugador 1", color = Color.White, fontSize = 30.sp)
         //cartas de j1
         Row(
             verticalAlignment = Alignment.Bottom,
@@ -143,7 +151,8 @@ fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
     for (carta in jugador2.Mano) {
         puntuacionJugador2 += carta.puntosMax
     }
+    //todo condiciones de victoria, preguntar cómo mostrar algo
     if (puntuacionJugador1>puntuacionJugador2){
-    println("hola")
+
     }
 }
