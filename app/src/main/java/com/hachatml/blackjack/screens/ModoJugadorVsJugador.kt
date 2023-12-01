@@ -45,6 +45,7 @@ var partidaFinalizada = false
 fun MainColumn(context: Context) {
     val jugador1 = Jugador()
     val jugador2 = Jugador()
+    var ciclarCarta = true
     ComenzarPartida(jugador1, context)
     Column(
         modifier = Modifier
@@ -62,7 +63,7 @@ fun MainColumn(context: Context) {
             horizontalArrangement = Arrangement.Center
         )
         {
-            PintarMano(jugador2)
+            PintarMano(jugador2,ciclarCarta)
         }
         Text(text = "Jugador 2", modifier = Modifier.rotate(-180f), color = Color.White, fontSize = 30.sp)
         Row {
@@ -75,7 +76,7 @@ fun MainColumn(context: Context) {
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.Center
         ) {
-            PintarMano(jugador1)
+            PintarMano(jugador1,ciclarCarta)
         }
     }
     if (partidaFinalizada){
@@ -84,8 +85,9 @@ fun MainColumn(context: Context) {
 }
 
 @Composable
-fun PintarMano(jugador: Jugador) {
+fun PintarMano(jugador: Jugador, ciclarCarta:Boolean) {
     println("PintarMano llamado")
+    ciclarCarta
     for (card in jugador.Mano) {
         if (jugador.suTurno) {
             Image(
