@@ -40,7 +40,9 @@ fun MainColumnPreview() {
     var context = LocalContext.current
     MainColumn(context)
 }
+
 var partidaFinalizada = false
+
 @Composable
 fun MainColumn(context: Context) {
     val jugador1 = Jugador()
@@ -63,9 +65,14 @@ fun MainColumn(context: Context) {
             horizontalArrangement = Arrangement.Center
         )
         {
-            PintarMano(jugador2,ciclarCarta)
+            PintarMano(jugador2, ciclarCarta)
         }
-        Text(text = "Jugador 2", modifier = Modifier.rotate(-180f), color = Color.White, fontSize = 30.sp)
+        Text(
+            text = "Jugador 2",
+            modifier = Modifier.rotate(-180f),
+            color = Color.White,
+            fontSize = 30.sp
+        )
         Row {
             Botonera(jugador1, jugador2)
         }
@@ -76,16 +83,18 @@ fun MainColumn(context: Context) {
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.Center
         ) {
-            PintarMano(jugador1,ciclarCarta)
+            PintarMano(jugador1, ciclarCarta)
         }
     }
-    if (partidaFinalizada){
-        AlertDialog(onDismissRequest = { partidaFinalizada=false }, confirmButton = { /*TODO*/ })//todo
+    if (partidaFinalizada) {
+        AlertDialog(
+            onDismissRequest = { partidaFinalizada = false },
+            confirmButton = { /*TODO*/ })//todo
     }
 }
 
 @Composable
-fun PintarMano(jugador: Jugador, ciclarCarta:Boolean) {
+fun PintarMano(jugador: Jugador, ciclarCarta: Boolean) {
     println("PintarMano llamado")
     ciclarCarta
     for (card in jugador.Mano) {
@@ -115,8 +124,10 @@ fun Botonera(jugador1: Jugador, jugador2: Jugador) {
     ) {
         Text(text = "Robar carta")
     }
-    Button(onClick = { devolverJugadorActivo(jugador1, jugador2).sePlanta()
-    cambioDeTurno(jugador1,jugador2)}) {
+    Button(onClick = {
+        devolverJugadorActivo(jugador1, jugador2).sePlanta()
+        cambioDeTurno(jugador1, jugador2)
+    }) {
         Text(text = "Plantarse")
     }
 }
@@ -135,7 +146,7 @@ fun cambioDeTurno(jugador1: Jugador, jugador2: Jugador) {
         jugador2.suTurno = !(jugador2.suTurno)
     }
     if (jugador1.plantado && jugador2.plantado) {
-        finalizarPartida(jugador1,jugador2)
+        finalizarPartida(jugador1, jugador2)
     }
 }
 
@@ -161,6 +172,6 @@ fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
 }
 
 @Composable
-fun cuadroVictoria(puntuacionJ1:Int,puntuacionJ2:Int){
+fun cuadroVictoria(puntuacionJ1: Int, puntuacionJ2: Int) {
 
 }
