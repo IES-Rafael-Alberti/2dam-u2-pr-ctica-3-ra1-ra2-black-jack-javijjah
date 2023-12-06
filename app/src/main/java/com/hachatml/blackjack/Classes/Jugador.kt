@@ -17,6 +17,8 @@ class Jugador {
     var Mano = mutableStateListOf<Carta>()
     var plantado: Boolean = false
     var suTurno: Boolean = false
+    var puntacion: Int = 0
+    var ganador: Boolean = false
 
     fun sePlanta() {
         plantado = true

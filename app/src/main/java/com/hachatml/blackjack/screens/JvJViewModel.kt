@@ -8,7 +8,8 @@ import com.hachatml.blackjack.Classes.Jugador
 
 val Mjugador1 = Jugador()
 val Mjugador2 = Jugador()
-var partidaFinalizada = MutableLiveData<Boolean>()
+var partidaFinalizada = false
+
 fun iniciarPartida(context: Context) {
     Baraja.crearBaraja(context)
     Mjugador1.RobarCarta()
@@ -31,22 +32,54 @@ fun cambioDeTurno(jugador1: Jugador, jugador2: Jugador) {
         jugador2.suTurno = !(jugador2.suTurno)
     }
     if (jugador1.plantado && jugador2.plantado) {
-        finalizarPartida(jugador1, jugador2)
+        finalizarPartida()
     }
 }
 
-fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
-    var puntuacionJugador1 = 0
-    var puntuacionJugador2 = 0
-    //todo
-    for (carta in jugador1.Mano) {
-        puntuacionJugador1 += carta.puntosMax
+fun finalizarPartida() {
+    partidaFinalizada = true
+    calcularPuntos()
+    calcularGanador()
+}
+fun calcularGanador(){
+    if (Mjugador1.puntacion < 21 && Mjugador2.puntacion < 21) {
+        if (Mjugador1.puntacion > Mjugador2.puntacion) {
+            Mjugador1.ganador=true
+        } else if (Mjugador2.puntacion > Mjugador1.puntacion) {
+            Mjugador2.ganador=true
+        }
     }
-    for (carta in jugador2.Mano) {
-        puntuacionJugador2 += carta.puntosMax
+    else{
+        if (Mjugador1.puntacion>21){
+            Mjugador2.ganador=true
+        }
+        else if (Mjugador2.puntacion>21){
+            Mjugador1.ganador=true
+        }
     }
-    //todo condiciones de victoria
-    partidaFinalizada.value = true
+}
+fun imprimirGanador():String{
+    if (Mjugador1.ganador && Mjugador2.ganador){
+        return "Error de cálculo"
+    }
+    else if (Mjugador1.ganador){
+        return "¡Ha ganado el jugador 1 con ${Mjugador1.puntacion} puntos! "
+    }
+    else if (Mjugador2.ganador){
+        return "¡Ha ganado el jugador 2 con ${Mjugador2.puntacion} puntos! "
+    }
+ return "Es un empate!"
+}
+fun calcularPuntos() {
+    Mjugador1.puntacion = 0
+    Mjugador2.puntacion = 0
+    //todo puntos del AS
+    for (carta in Mjugador1.Mano) {
+        Mjugador1.puntacion += carta.puntosMax
+    }
+    for (carta in Mjugador2.Mano) {
+        Mjugador2.puntacion += carta.puntosMax
+    }
 }
 
 fun dameCarta() {
@@ -58,39 +91,3 @@ fun Plantarse() {
     devolverJugadorActivo(Mjugador1, Mjugador2).sePlanta()
     cambioDeTurno(Mjugador1, Mjugador2)
 }
-/*
-class JvJViewModel {
-    fun cambioDeTurno(jugador1: Jugador, jugador2: Jugador) {
-        jugador1.suTurno = !(jugador1.suTurno)
-        jugador2.suTurno = !(jugador2.suTurno)
-        if (devolverJugadorActivo(jugador1, jugador2).plantado) {
-            jugador1.suTurno = !(jugador1.suTurno)
-            jugador2.suTurno = !(jugador2.suTurno)
-        }
-        if (jugador1.plantado && jugador2.plantado) {
-            finalizarPartida(jugador1, jugador2)
-        }
-    }
-
-    fun devolverJugadorActivo(jugador1: Jugador, jugador2: Jugador): Jugador {
-        if (jugador1.suTurno) {
-            return jugador1
-        }
-        return jugador2
-    }
-
-    fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
-        var puntuacionJugador1 = 0
-        var puntuacionJugador2 = 0
-        //todo
-        for (carta in jugador1.Mano) {
-            puntuacionJugador1 += carta.puntosMax
-        }
-        for (carta in jugador2.Mano) {
-            puntuacionJugador2 += carta.puntosMax
-        }
-        //todo condiciones de victoria, preguntar cómo mostrar algo
-        partidaFinalizada = true
-    }
-}
-*/
