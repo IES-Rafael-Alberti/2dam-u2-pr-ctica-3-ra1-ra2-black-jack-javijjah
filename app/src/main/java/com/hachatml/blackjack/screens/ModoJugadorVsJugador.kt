@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -14,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -36,32 +38,55 @@ import com.hachatml.cartamasalta.enums.Palos
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 @Composable
-fun MainColumn(){
-Column(verticalArrangement = Arrangement.Center,horizontalAlignment = Alignment.CenterHorizontally) {
-    Botonera()
-}
-}
-/*
-@Composable
-fun PintarJugador1(){
-
-}*/
-@Composable
-fun Botonera(){
+fun MainColumn() {
     val context = LocalContext.current
-    Button(onClick = { dameCarta(context)}) {
-        Text(text = "Dame Carta")
+    iniciarPartida(context)
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(50.dp)
+    ) {
+        PintarJugador1()
+        Botonera()
+        PintarJugador2()
     }
-    Button(onClick = { Plantarse()}) {
-        Text(text = "Plantarse")
-    }
-
 }
 
+@Composable
+fun PintarJugador2() {
+    Row {
+        for (card in Mjugador2.Mano) {
+            Image(
+                painter = painterResource(
+                    id = Mjugador1.ultimaCarta().idDrawable
+                ),
+                contentDescription = "Carta de jugador 1"
+            )
+        }
+    }
+}
 
+@Composable
+fun Botonera() {
+    Row {
+        Button(onClick = { dameCarta() }) {
+            Text(text = "Dame Carta")
+        }
+        Button(onClick = { Plantarse() }) {
+            Text(text = "Plantarse")
+        }
+    }
+}
 
-
-
+@Composable
+fun PintarJugador1() {
+    Image(
+        painter = painterResource(
+            id = Mjugador2.ultimaCarta().idDrawable
+        ),
+        contentDescription = "Carta de jugador 1"
+    )
+}
 
 /*
 @Preview(showBackground = true)

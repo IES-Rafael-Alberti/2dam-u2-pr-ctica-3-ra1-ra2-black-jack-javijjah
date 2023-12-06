@@ -23,6 +23,9 @@ class Jugador {
     fun RobarCarta() {
         Mano.add(Baraja.dameCarta())
     }
+    fun ultimaCarta():Carta{
+        return Mano[Mano.size-1]
+    }
     /*  @Composable
    fun PintarMano() {
        for (card in Mano) {

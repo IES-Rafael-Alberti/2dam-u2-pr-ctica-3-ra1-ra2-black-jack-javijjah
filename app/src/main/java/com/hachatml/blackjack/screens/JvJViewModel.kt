@@ -7,6 +7,12 @@ import com.hachatml.blackjack.Classes.Jugador
 val Mjugador1 = Jugador()
 val Mjugador2 = Jugador()
 var partidaFinalizada = MutableLiveData<Boolean>()
+fun iniciarPartida(context:Context){
+    Baraja.crearBaraja(context)
+    Mjugador1.RobarCarta()
+    Mjugador2.RobarCarta()
+    Mjugador1.suTurno = true
+}
 fun devolverJugadorActivo(jugador1: Jugador, jugador2: Jugador): Jugador {
     if (jugador1.suTurno) {
         return jugador1
@@ -37,10 +43,7 @@ fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
     //todo condiciones de victoria
     partidaFinalizada.value = true
 }
-fun dameCarta(context: Context){
-    if (Baraja.listaCartas.isEmpty()){
-        Baraja.crearBaraja(context)
-    }
+fun dameCarta(){
     devolverJugadorActivo(Mjugador1, Mjugador2).RobarCarta()
     cambioDeTurno(Mjugador1, Mjugador2)
 }
