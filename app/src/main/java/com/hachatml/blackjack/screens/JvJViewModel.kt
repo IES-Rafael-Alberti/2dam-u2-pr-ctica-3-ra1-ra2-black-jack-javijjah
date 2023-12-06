@@ -91,3 +91,9 @@ fun Plantarse() {
     devolverJugadorActivo(Mjugador1, Mjugador2).sePlanta()
     cambioDeTurno(Mjugador1, Mjugador2)
 }
+
+fun reiniciarPartida(){
+    Mjugador1.reiniciarJugador()
+    Mjugador2.reiniciarJugador()
+    partidaFinalizada = false
+}

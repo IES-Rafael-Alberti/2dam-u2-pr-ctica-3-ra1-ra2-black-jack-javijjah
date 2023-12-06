@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.hachatml.blackjack.R
+import com.hachatml.blackjack.screens.partidaFinalizada
 import com.hachatml.cartamasalta.enums.Naipes
 import com.hachatml.cartamasalta.enums.Palos
 
@@ -32,23 +33,12 @@ class Jugador {
     fun ultimaCarta():Carta{
         return Mano[Mano.size-1]
     }
-    /*  @Composable
-   fun PintarMano() {
-       for (card in Mano) {
-           if (suTurno) {
-               Image(
-                   painter = painterResource(id = card.idDrawable),
-                   contentDescription = "Carta de la mano",
-                   modifier = Modifier.size(150.dp)
-               )
-           } else {
-               Image(
-                   painter = painterResource(id = R.drawable.facedown),
-                   contentDescription = "Carta de la mano",
-                   modifier = Modifier.size(150.dp)
-               )
-           }
-       }
-   }
-  */
+
+    fun reiniciarJugador(){
+        Mano.clear()
+        plantado = false
+        suTurno = false
+        puntacion = 0
+        ganador = false
+    }
 }
