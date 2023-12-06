@@ -1,4 +1,5 @@
 package com.hachatml.blackjack.screens
+import android.content.Context
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.MutableLiveData
 import com.hachatml.blackjack.Classes.Baraja
@@ -36,14 +37,16 @@ fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
     //todo condiciones de victoria
     partidaFinalizada.value = true
 }
-fun dameCarta(){
+fun dameCarta(context: Context){
     if (Baraja.listaCartas.isEmpty()){
-        Baraja.crearBaraja()
+        Baraja.crearBaraja(context)
     }
     devolverJugadorActivo(Mjugador1, Mjugador2).RobarCarta()
+    cambioDeTurno(Mjugador1, Mjugador2)
 }
 fun Plantarse(){
     devolverJugadorActivo(Mjugador1, Mjugador2).sePlanta()
+    cambioDeTurno(Mjugador1, Mjugador2)
 }
 /*
 class JvJViewModel {

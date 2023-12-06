@@ -48,7 +48,8 @@ fun PintarJugador1(){
 }*/
 @Composable
 fun Botonera(){
-    Button(onClick = { dameCarta()}) {
+    val context = LocalContext.current
+    Button(onClick = { dameCarta(context)}) {
         Text(text = "Dame Carta")
     }
     Button(onClick = { Plantarse()}) {
