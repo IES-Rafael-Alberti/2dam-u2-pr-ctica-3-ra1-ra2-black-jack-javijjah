@@ -33,18 +33,48 @@ import com.hachatml.blackjack.Classes.Jugador
 import com.hachatml.blackjack.R
 import com.hachatml.cartamasalta.enums.Naipes
 import com.hachatml.cartamasalta.enums.Palos
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
+@Composable
+fun MainColumn(){
+Column(verticalArrangement = Arrangement.Center,horizontalAlignment = Alignment.CenterHorizontally) {
+    Botonera()
+}
+}
+/*
+@Composable
+fun PintarJugador1(){
+
+}*/
+@Composable
+fun Botonera(){
+    Button(onClick = { dameCarta()}) {
+        Text(text = "Dame Carta")
+    }
+    Button(onClick = { Plantarse()}) {
+        Text(text = "Plantarse")
+    }
+
+}
+
+
+
+
+
+
+/*
 @Preview(showBackground = true)
 @Composable
 fun MainColumnPreview() {
+    var VM = JvJViewModel()
     var context = LocalContext.current
-    MainColumn(context)
+    MainColumn(context,VM)
 }
 
 var partidaFinalizada = false
 
 @Composable
-fun MainColumn(context: Context) {
+fun MainColumn(context: Context,VM: JvJViewModel) {
     val jugador1 = Jugador()
     val jugador2 = Jugador()
     var ciclarCarta = true
@@ -65,7 +95,7 @@ fun MainColumn(context: Context) {
             horizontalArrangement = Arrangement.Center
         )
         {
-            PintarMano(jugador2, ciclarCarta)
+            //todo añadir pintado
         }
         Text(
             text = "Jugador 2",
@@ -74,7 +104,7 @@ fun MainColumn(context: Context) {
             fontSize = 30.sp
         )
         Row {
-            Botonera(jugador1, jugador2)
+            Botonera(jugador1, jugador2,VM)
         }
         //todo ver cómo hacer que el texto se vea mejor
         Text(text = "Jugador 1", color = Color.White, fontSize = 30.sp)
@@ -83,7 +113,7 @@ fun MainColumn(context: Context) {
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.Center
         ) {
-            PintarMano(jugador1, ciclarCarta)
+        //todo añadir pintado
         }
     }
     if (partidaFinalizada) {
@@ -92,7 +122,7 @@ fun MainColumn(context: Context) {
             confirmButton = { /*TODO*/ })//todo
     }
 }
-
+/*
 @Composable
 fun PintarMano(jugador: Jugador, ciclarCarta: Boolean) {
     println("PintarMano llamado")
@@ -113,20 +143,21 @@ fun PintarMano(jugador: Jugador, ciclarCarta: Boolean) {
         }
     }
 }
+ */
 
 //todo forzar dispositivo vertical
 @Composable
-fun Botonera(jugador1: Jugador, jugador2: Jugador) {
+fun Botonera(jugador1: Jugador, jugador2: Jugador,VM:JvJViewModel) {
     Button(onClick = {
-        devolverJugadorActivo(jugador1, jugador2).RobarCarta()
-        cambioDeTurno(jugador1, jugador2)
+        VM.devolverJugadorActivo(jugador1, jugador2).RobarCarta()
+        VM.cambioDeTurno(jugador1, jugador2)
     }
     ) {
         Text(text = "Robar carta")
     }
     Button(onClick = {
-        devolverJugadorActivo(jugador1, jugador2).sePlanta()
-        cambioDeTurno(jugador1, jugador2)
+        VM.devolverJugadorActivo(jugador1, jugador2).sePlanta()
+        VM.cambioDeTurno(jugador1, jugador2)
     }) {
         Text(text = "Plantarse")
     }
@@ -138,40 +169,9 @@ fun ComenzarPartida(jugador: Jugador, context: Context) {
     jugador.suTurno = true
 }
 
-fun cambioDeTurno(jugador1: Jugador, jugador2: Jugador) {
-    jugador1.suTurno = !(jugador1.suTurno)
-    jugador2.suTurno = !(jugador2.suTurno)
-    if (devolverJugadorActivo(jugador1, jugador2).plantado) {
-        jugador1.suTurno = !(jugador1.suTurno)
-        jugador2.suTurno = !(jugador2.suTurno)
-    }
-    if (jugador1.plantado && jugador2.plantado) {
-        finalizarPartida(jugador1, jugador2)
-    }
-}
-
-fun devolverJugadorActivo(jugador1: Jugador, jugador2: Jugador): Jugador {
-    if (jugador1.suTurno) {
-        return jugador1
-    }
-    return jugador2
-}
-
-fun finalizarPartida(jugador1: Jugador, jugador2: Jugador) {
-    var puntuacionJugador1 = 0
-    var puntuacionJugador2 = 0
-    //todo
-    for (carta in jugador1.Mano) {
-        puntuacionJugador1 += carta.puntosMax
-    }
-    for (carta in jugador2.Mano) {
-        puntuacionJugador2 += carta.puntosMax
-    }
-    //todo condiciones de victoria, preguntar cómo mostrar algo
-    partidaFinalizada = true
-}
 
 @Composable
 fun cuadroVictoria(puntuacionJ1: Int, puntuacionJ2: Int) {
 
 }
+*/

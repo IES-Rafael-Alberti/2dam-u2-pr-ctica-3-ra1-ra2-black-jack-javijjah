@@ -16,31 +16,30 @@ class Jugador {
     var plantado: Boolean = false
     var suTurno: Boolean = false
 
-
     fun sePlanta() {
         plantado = true
-    }
-
-    @Composable
-    fun PintarMano() {
-        for (card in Mano) {
-            if (suTurno) {
-                Image(
-                    painter = painterResource(id = card.idDrawable),
-                    contentDescription = "Carta de la mano",
-                    modifier = Modifier.size(150.dp)
-                )
-            } else {
-                Image(
-                    painter = painterResource(id = R.drawable.facedown),
-                    contentDescription = "Carta de la mano",
-                    modifier = Modifier.size(150.dp)
-                )
-            }
-        }
     }
 
     fun RobarCarta() {
         Mano.add(Baraja.dameCarta())
     }
+    /*  @Composable
+   fun PintarMano() {
+       for (card in Mano) {
+           if (suTurno) {
+               Image(
+                   painter = painterResource(id = card.idDrawable),
+                   contentDescription = "Carta de la mano",
+                   modifier = Modifier.size(150.dp)
+               )
+           } else {
+               Image(
+                   painter = painterResource(id = R.drawable.facedown),
+                   contentDescription = "Carta de la mano",
+                   modifier = Modifier.size(150.dp)
+               )
+           }
+       }
+   }
+  */
 }
