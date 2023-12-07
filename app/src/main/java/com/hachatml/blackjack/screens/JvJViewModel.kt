@@ -1,14 +1,13 @@
 package com.hachatml.blackjack.screens
 
 import android.content.Context
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.MutableLiveData
 import com.hachatml.blackjack.Classes.Baraja
 import com.hachatml.blackjack.Classes.Jugador
 
 val Mjugador1 = Jugador()
 val Mjugador2 = Jugador()
 var partidaFinalizada = false
+
 
 fun iniciarPartida(context: Context) {
     Baraja.crearBaraja(context)
@@ -87,7 +86,7 @@ fun dameCarta() {
     cambioDeTurno(Mjugador1, Mjugador2)
 }
 
-fun Plantarse() {
+fun plantarse() {
     devolverJugadorActivo(Mjugador1, Mjugador2).sePlanta()
     cambioDeTurno(Mjugador1, Mjugador2)
 }

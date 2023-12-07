@@ -2,8 +2,6 @@ package com.hachatml.blackjack.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,12 +19,15 @@ import androidx.compose.ui.unit.dp
 import com.hachatml.blackjack.R
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.window.Dialog
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 @Composable
 fun MainColumn() {
     val context = LocalContext.current
+    var showDialog by remember { mutableStateOf(false) }
     if (Mjugador1.Mano.size == 0 && Mjugador2.Mano.size == 0)
         iniciarPartida(context)
     Column(
@@ -75,8 +76,8 @@ fun Botonera() {
         Button(onClick = { dameCarta() }, enabled = !partidaFinalizada) {
             Text(text = "Dame Carta")
         }
-        Button(onClick = { Plantarse() }, enabled = !partidaFinalizada) {
-            Text(text = "Plantarse")
+        Button(onClick = { plantarse() }, enabled = !partidaFinalizada) {
+            Text(text = "plantarse")
         }
         if (partidaFinalizada) {
             Button(onClick = { reiniciarPartida() }) {
@@ -110,7 +111,7 @@ fun PintarJugador1(cycle: Boolean) {
 }
 
 @Composable
-fun pantallaVictoria(cycle: Boolean) { //todo que showDialog funcione de verdad
+fun pantallaVictoria(cycle: Boolean,showDialog:Boolean) { //todo que showDialog funcione de verdad
     var showDialog = true
     if (partidaFinalizada&&showDialog) {
         //todo que se muestre el diálogo al plantarse ambos
