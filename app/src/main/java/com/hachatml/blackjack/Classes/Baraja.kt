@@ -7,13 +7,12 @@ import com.hachatml.cartamasalta.enums.Palos
 class Baraja {
     companion object {
         var listaCartas = ArrayList<Carta>()
-
         fun crearBaraja(context: Context) {
             for (palo in Palos.values()) {
                 for (naipe in Naipes.values()) {
                     val pointsMin: Int
                     val pointsMax: Int
-                    val idDrawable: Int  //todo
+                    val idDrawable: Int
                     when (naipe) {
                         Naipes.AS -> {
                             pointsMin = 1

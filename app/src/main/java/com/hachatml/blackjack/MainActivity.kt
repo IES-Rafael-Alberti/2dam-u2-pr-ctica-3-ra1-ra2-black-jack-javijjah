@@ -11,13 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.hachatml.blackjack.screens.MainColumn
 import com.hachatml.blackjack.ui.theme.BlackJackTheme
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.hachatml.blackjack.screens.MainColumn
 import com.hachatml.blackjack.screens.Routes
 import com.hachatml.blackjack.screens.TitleAndButtons
 
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = Routes.MainMenu.route
                     ) {
                         composable(Routes.MainMenu.route) { TitleAndButtons(navController = navController) }
-                        composable(Routes.ModoPVP.route) { MainColumn(context = LocalContext.current)}
+                        composable(Routes.ModoPVP.route) { MainColumn()}
                     }
             }
         }

@@ -31,7 +31,7 @@ import androidx.navigation.NavHostController
             Button(onClick = { navController.navigate(Routes.ModoPVP.route) },modifier = Modifier.padding(20.dp)) {
                 Text(text = "Jugador vs Jugador")
             }
-            Button(onClick = { /*TODO llevar a otra screen*/ },modifier = Modifier.padding(20.dp)) {
+            Button(onClick = { navController.navigate(Routes.ModoPVP.route) },modifier = Modifier.padding(20.dp)) {
                 Text(text = "Jugador vs CPU")
             }
         }
