@@ -26,7 +26,7 @@ import androidx.compose.runtime.setValue
 @Composable
 fun MainColumn() {
     val context = LocalContext.current
-    var showDialog by remember { mutableStateOf(partidaFinalizada) }
+    var showDialog by remember { mutableStateOf(false) }
     if (Mjugador1.Mano.size == 0 && Mjugador2.Mano.size == 0)
         iniciarPartida(context)
     Column(
@@ -35,16 +35,17 @@ fun MainColumn() {
         modifier = Modifier.padding(50.dp)
     ) {
         val cycle = true
+        if (showDialog){
         pantallaVictoria(cycle = cycle)
+        }
         PintarJugador1(cycle)
         Botonera()
         PintarJugador2(cycle)
     }
 }
-
 @Composable
 fun PintarJugador2(cycle: Boolean) {
-    LazyRow(horizontalArrangement = Arrangement.spacedBy(-200.dp)) {
+    LazyRow(horizontalArrangement = Arrangement.spacedBy((-200).dp)) {
         //todo hacer que se vea la carta de a quien le toque
         if (Mjugador2.suTurno) {
             items(Mjugador2.Mano) {
@@ -88,7 +89,8 @@ fun Botonera() {
 
 @Composable
 fun PintarJugador1(cycle: Boolean) {
-    LazyRow(horizontalArrangement = Arrangement.spacedBy(-200.dp)) {
+    //todo hacer que se muestren cartas solo en el turno de uno
+    LazyRow(horizontalArrangement = Arrangement.spacedBy((-200).dp)) {
         if (Mjugador1.suTurno) {
             items(Mjugador1.Mano) {
                 Image(
@@ -111,7 +113,6 @@ fun PintarJugador1(cycle: Boolean) {
 
 @Composable
 fun pantallaVictoria(cycle: Boolean) {
-    if (partidaFinalizada) {
         //todo que se muestre el diálogo al plantarse ambos
         AlertDialog(onDismissRequest = { partidaFinalizada = false }, text = {
             Column(
@@ -123,11 +124,10 @@ fun pantallaVictoria(cycle: Boolean) {
                 Text(text = imprimirGanador())
             }
         }, confirmButton = {
-            Button(onClick = { reiniciarPartida() }) {
+            Button(onClick = {/*todo visibilidad diálogo*/}) {
                 Text(text = "Aceptar")
             }
         })
-    }
 }
 
 @Composable
