@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.hachatml.blackjack.R
 
 @Composable
 fun MainColumn() {
@@ -47,21 +48,20 @@ fun MainColumn() {
 fun PintarJugador2(cycle: Boolean) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy((-200).dp)) {
         //todo hacer que se vea la carta de a quien le toque
-        if (Mjugador2.suTurno) {
             items(Mjugador2.Mano) {
+                if (!(Mjugador2.suTurno)){
                 Image(
                     painter = painterResource(id = it.idDrawable),
                     contentDescription = "Carta de J2",
                     modifier = Modifier.size(300.dp)
                 )
-            }
-        } else {
-            items(Mjugador2.Mano) {
-                Image(
-                    painter = painterResource(id = it.idDrawable),
-                    contentDescription = "Carta de J2",
-                    modifier = Modifier.size(300.dp)
-                )
+                }
+                else {
+                    Image(
+                        painter = painterResource(id = R.drawable.facedown),
+                        contentDescription = "Carta de J2",
+                        modifier = Modifier.size(300.dp)
+                    )
             }
         }
     }
@@ -91,25 +91,24 @@ fun Botonera() {
 fun PintarJugador1(cycle: Boolean) {
     //todo hacer que se muestren cartas solo en el turno de uno
     LazyRow(horizontalArrangement = Arrangement.spacedBy((-200).dp)) {
-        if (Mjugador1.suTurno) {
             items(Mjugador1.Mano) {
-                Image(
-                    painter = painterResource(id = it.idDrawable),
-                    contentDescription = "Carta de J1",
-                    modifier = Modifier.size(300.dp)
-                )
-            }
-        } else {
-            items(Mjugador1.Mano) {
-                Image(
-                    painter = painterResource(id = it.idDrawable),
-                    contentDescription = "Carta de J1",
-                    modifier = Modifier.size(300.dp)
-                )
+                if (!(Mjugador1.suTurno)){
+                    Image(
+                        painter = painterResource(id = it.idDrawable),
+                        contentDescription = "Carta de J2",
+                        modifier = Modifier.size(300.dp)
+                    )
+                }
+                else {
+                    Image(
+                        painter = painterResource(id = R.drawable.facedown),
+                        contentDescription = "Carta de J2",
+                        modifier = Modifier.size(300.dp)
+                    )
+                }
             }
         }
     }
-}
 
 @Composable
 fun pantallaVictoria(cycle: Boolean) {
