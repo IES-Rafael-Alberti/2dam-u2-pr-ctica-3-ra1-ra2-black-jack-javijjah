@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.hachatml.blackjack.R
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.getValue
@@ -27,7 +26,7 @@ import androidx.compose.runtime.setValue
 @Composable
 fun MainColumn() {
     val context = LocalContext.current
-    var showDialog by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(partidaFinalizada) }
     if (Mjugador1.Mano.size == 0 && Mjugador2.Mano.size == 0)
         iniciarPartida(context)
     Column(
@@ -36,7 +35,7 @@ fun MainColumn() {
         modifier = Modifier.padding(50.dp)
     ) {
         val cycle = true
-        pantallaVictoria(cycle = partidaFinalizada)
+        pantallaVictoria(cycle = cycle)
         PintarJugador1(cycle)
         Botonera()
         PintarJugador2(cycle)
@@ -58,7 +57,7 @@ fun PintarJugador2(cycle: Boolean) {
         } else {
             items(Mjugador2.Mano) {
                 Image(
-                    painter = painterResource(id = R.drawable.facedown),
+                    painter = painterResource(id = it.idDrawable),
                     contentDescription = "Carta de J2",
                     modifier = Modifier.size(300.dp)
                 )
@@ -101,7 +100,7 @@ fun PintarJugador1(cycle: Boolean) {
         } else {
             items(Mjugador1.Mano) {
                 Image(
-                    painter = painterResource(id = R.drawable.facedown),
+                    painter = painterResource(id = it.idDrawable),
                     contentDescription = "Carta de J1",
                     modifier = Modifier.size(300.dp)
                 )
@@ -111,9 +110,8 @@ fun PintarJugador1(cycle: Boolean) {
 }
 
 @Composable
-fun pantallaVictoria(cycle: Boolean,showDialog:Boolean) { //todo que showDialog funcione de verdad
-    var showDialog = true
-    if (partidaFinalizada&&showDialog) {
+fun pantallaVictoria(cycle: Boolean) {
+    if (partidaFinalizada) {
         //todo que se muestre el diálogo al plantarse ambos
         AlertDialog(onDismissRequest = { partidaFinalizada = false }, text = {
             Column(
@@ -125,7 +123,7 @@ fun pantallaVictoria(cycle: Boolean,showDialog:Boolean) { //todo que showDialog 
                 Text(text = imprimirGanador())
             }
         }, confirmButton = {
-            Button(onClick = { showDialog = false }) {
+            Button(onClick = { reiniciarPartida() }) {
                 Text(text = "Aceptar")
             }
         })

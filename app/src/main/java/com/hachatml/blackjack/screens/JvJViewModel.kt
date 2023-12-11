@@ -49,7 +49,11 @@ fun calcularGanador(){
         }
     }
     else{
-        if (Mjugador1.puntacion>21){
+        if (Mjugador1.puntacion>21&& Mjugador2.puntacion>21){
+            Mjugador1.ganador=false
+            Mjugador2.ganador=false
+        }
+        else if (Mjugador1.puntacion>21){
             Mjugador2.ganador=true
         }
         else if (Mjugador2.puntacion>21){
