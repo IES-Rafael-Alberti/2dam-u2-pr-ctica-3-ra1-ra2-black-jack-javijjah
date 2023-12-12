@@ -28,10 +28,7 @@ import androidx.navigation.NavHostController
         ) {
             Text(text = "BLACKJACK", fontSize = 50.sp,modifier = Modifier.padding(20.dp))
             Button(onClick = { navController.navigate(Routes.ModoPVP.route) },modifier = Modifier.padding(20.dp)) {
-                Text(text = "Jugador vs Jugador")
-            }
-            Button(onClick = { navController.navigate(Routes.ModoPVP.route) },modifier = Modifier.padding(20.dp)) {
-                Text(text = "Jugador vs CPU")
+                Text(text = "Jugar")
             }
         }
     }

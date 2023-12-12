@@ -67,12 +67,16 @@ import com.hachatml.blackjack.R
 
     @Composable
     fun Botonera(cycle: Boolean, navController: NavController, VM: JvJViewModel) {
-        Row {
-            Button(onClick = { VM.dameCarta() },enabled = !(VM.partidaFinalizada)) {
-                Text(text = "Dame Carta")
-            }
-            Button(onClick = { VM.plantarse() },enabled = !(VM.partidaFinalizada)) {
-                Text(text = "plantarse")
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Row {
+                Button(onClick = { VM.dameCarta() },enabled = !(VM.partidaFinalizada)) {
+                    Text(text = "Dame Carta")
+                }
+                Button(onClick = { VM.plantarse() },enabled = !(VM.partidaFinalizada)) {
+                    Text(text = "plantarse")
+                }
             }
             if (VM.partidaFinalizada) {
                 Button(onClick = { navController.navigate(Routes.PantallaVictoria.route) }) {
