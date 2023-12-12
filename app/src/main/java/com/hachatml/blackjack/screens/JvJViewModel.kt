@@ -1,19 +1,21 @@
 package com.hachatml.blackjack.screens
 
 import android.content.Context
+import androidx.navigation.NavController
 import com.hachatml.blackjack.Classes.Baraja
 import com.hachatml.blackjack.Classes.Jugador
 
 val Mjugador1 = Jugador()
 val Mjugador2 = Jugador()
 var partidaFinalizada = false
+var VMnavController:NavController? = null
 
-
-fun iniciarPartida(context: Context) {
+fun iniciarPartida(context: Context, navController: NavController) {
     Baraja.crearBaraja(context)
     Mjugador1.RobarCarta()
     Mjugador2.RobarCarta()
     Mjugador1.suTurno = true
+    VMnavController = navController
 }
 
 fun devolverJugadorActivo(jugador1: Jugador, jugador2: Jugador): Jugador {
@@ -39,6 +41,7 @@ fun finalizarPartida() {
     partidaFinalizada = true
     calcularPuntos()
     calcularGanador()
+    VMnavController?.navigate(Routes.PantallaVictoria.route)
 }
 fun calcularGanador(){
     if (Mjugador1.puntacion < 21 && Mjugador2.puntacion < 21) {
@@ -69,7 +72,7 @@ fun imprimirGanador():String{
         return "¡Ha ganado el jugador 1 con ${Mjugador1.puntacion} puntos! "
     }
     else if (Mjugador2.ganador){
-        return "¡Ha ganado el jugador 2 con ${Mjugador2.puntacion} puntos! "
+        return "¡Ha ganado el jugador 2 con \n ${Mjugador2.puntacion} puntos! "
     }
  return "Es un empate!"
 }

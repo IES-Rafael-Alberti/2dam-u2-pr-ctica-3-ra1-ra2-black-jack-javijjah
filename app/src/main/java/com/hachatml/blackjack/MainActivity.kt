@@ -20,6 +20,7 @@ import androidx.navigation.navArgument
 import com.hachatml.blackjack.screens.MainColumn
 import com.hachatml.blackjack.screens.Routes
 import com.hachatml.blackjack.screens.TitleAndButtons
+import com.hachatml.blackjack.screens.VictoryColumn
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +37,9 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = Routes.MainMenu.route
                     ) {
-                        composable(Routes.MainMenu.route) { TitleAndButtons(navController = navController) }
-                        composable(Routes.ModoPVP.route) { MainColumn()}
+                        composable(Routes.MainMenu.route) { TitleAndButtons(navController) }
+                        composable(Routes.ModoPVP.route) { MainColumn(navController)}
+                        composable(Routes.PantallaVictoria.route) { VictoryColumn(navController)}
                     }
             }
         }
