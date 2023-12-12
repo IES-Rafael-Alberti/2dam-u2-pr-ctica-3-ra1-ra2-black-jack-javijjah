@@ -28,8 +28,9 @@ import com.hachatml.blackjack.R
     fun MainColumn(navController: NavController, VM:JvJViewModel) {
         val context = LocalContext.current
         val cycle = true
-        if (VM.Mjugador1.Mano.size == 0 && VM.Mjugador2.Mano.size == 0)
+        if (VM.Mjugador1.Mano.size == 0 && VM.Mjugador2.Mano.size == 0){
             VM.iniciarPartida(context, navController)
+        }
         Column(
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally,
