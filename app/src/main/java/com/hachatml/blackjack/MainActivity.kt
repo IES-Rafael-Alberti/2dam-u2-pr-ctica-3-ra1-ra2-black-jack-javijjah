@@ -3,6 +3,7 @@ package com.hachatml.blackjack
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,6 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.hachatml.blackjack.screens.JvJViewModel
 import com.hachatml.blackjack.screens.MainColumn
 import com.hachatml.blackjack.screens.Routes
 import com.hachatml.blackjack.screens.TitleAndButtons
@@ -33,16 +35,22 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
+                    val blackJackVM = JvJViewModel()
                     NavHost(
                         navController = navController,
                         startDestination = Routes.MainMenu.route
                     ) {
                         composable(Routes.MainMenu.route) { TitleAndButtons(navController) }
-                        composable(Routes.ModoPVP.route) { MainColumn(navController)}
-                        composable(Routes.PantallaVictoria.route) { VictoryColumn(navController)}
+                        composable(Routes.ModoPVP.route) { MainColumn(navController, blackJackVM) }
+                        composable(Routes.PantallaVictoria.route) {
+                            VictoryColumn(
+                                navController,
+                                blackJackVM
+                            )
+                        }
                     }
+                }
             }
         }
     }
-}
 }

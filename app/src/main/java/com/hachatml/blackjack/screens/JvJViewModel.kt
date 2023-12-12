@@ -1,13 +1,15 @@
 package com.hachatml.blackjack.screens
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.navigation.NavController
 import com.hachatml.blackjack.Classes.Baraja
 import com.hachatml.blackjack.Classes.Jugador
-
+class JvJViewModel{
 val Mjugador1 = Jugador()
 val Mjugador2 = Jugador()
 var partidaFinalizada = false
+@SuppressLint("StaticFieldLeak")
 var VMnavController:NavController? = null
 
 fun iniciarPartida(context: Context, navController: NavController) {
@@ -102,4 +104,5 @@ fun reiniciarPartida(){
     Mjugador1.reiniciarJugador()
     Mjugador2.reiniciarJugador()
     partidaFinalizada = false
+}
 }

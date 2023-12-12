@@ -12,19 +12,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-
 @Composable
-fun VictoryColumn(navController: NavController) {
+fun VictoryColumn(navController: NavController,VM:JvJViewModel) {
     Column(
         modifier = Modifier.size(200.dp),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Puntuación del jugador 1 (Arriba):\n ${Mjugador1.puntacion} puntos", fontSize = 20.sp, textAlign = TextAlign.Center)
-        Text(text = "Puntuación del jugador 2 (Abajo):\n ${Mjugador2.puntacion} puntos", fontSize = 20.sp, textAlign = TextAlign.Center)
-        Text(text = imprimirGanador(), fontSize = 30.sp, textAlign = TextAlign.Center)
+        Text(text = "Puntuación del jugador 1 (Arriba):\n ${VM.Mjugador1.puntacion} puntos", fontSize = 20.sp, textAlign = TextAlign.Center)
+        Text(text = "Puntuación del jugador 2 (Abajo):\n ${VM.Mjugador2.puntacion} puntos", fontSize = 20.sp, textAlign = TextAlign.Center)
+        Text(text = VM.imprimirGanador(), fontSize = 30.sp, textAlign = TextAlign.Center)
         Button(onClick = {
-            reiniciarPartida()
+            VM.reiniciarPartida()
             navController.navigate(Routes.ModoPVP.route)
         }) {
             Text(text = "Jugar otra vez")
