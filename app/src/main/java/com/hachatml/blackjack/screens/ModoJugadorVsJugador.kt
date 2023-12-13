@@ -2,9 +2,11 @@ package com.hachatml.blackjack.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -22,6 +24,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.layout.ContentScale
 import androidx.navigation.NavController
 import com.hachatml.blackjack.R
     @Composable
@@ -34,7 +38,9 @@ import com.hachatml.blackjack.R
         Column(
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(50.dp)
+            modifier = Modifier.fillMaxSize().paint(
+                painterResource(id = R.drawable.fondo),
+                contentScale = ContentScale.Crop)
         ) {
             PintarJugador1(cycle,VM)
             Botonera(cycle, navController,VM)
