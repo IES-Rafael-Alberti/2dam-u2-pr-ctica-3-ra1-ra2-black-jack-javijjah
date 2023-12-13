@@ -35,119 +35,152 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.navigation.NavController
 import com.hachatml.blackjack.R
-    @Composable
-    fun MainColumn(navController: NavController, VM:JvJViewModel) {
-        val context = LocalContext.current
-        val cycle = true
-        if (VM.Mjugador1.Mano.size == 0 && VM.Mjugador2.Mano.size == 0){
-            VM.iniciarPartida(context, navController)
-        }
-        Column(
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxSize()
-                .paint(
-                    painterResource(id = R.drawable.fondo),
-                    contentScale = ContentScale.Crop
+
+/**
+ *Columna principal la cual contiene el resto de objetos
+ */
+@Composable
+fun MainColumn(navController: NavController, VM: JvJViewModel) {
+    val context = LocalContext.current
+    val cycle = true
+    if (VM.Mjugador1.Mano.size == 0 && VM.Mjugador2.Mano.size == 0) {
+        VM.iniciarPartida(context, navController)
+    }
+    Column(
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(id = R.drawable.fondo),
+                contentScale = ContentScale.Crop
+            )
+    ) {
+        PintarJugador1(cycle, VM)
+        Botonera(cycle, navController, VM)
+        PintarJugador2(cycle, VM)
+    }
+}
+
+/**
+ * Impresión del jugador 2
+ */
+@Composable
+fun PintarJugador2(cycle: Boolean, VM: JvJViewModel) {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy((-200).dp),
+        modifier = Modifier.padding(20.dp)
+    ) {
+        //todo hacer que se vea la carta de a quien le toque
+        items(VM.Mjugador2.Mano) {
+            if (!(VM.Mjugador2.suTurno)) {
+                Image(
+                    painter = painterResource(id = it.idDrawable),
+                    contentDescription = "Carta de J2",
+                    modifier = Modifier.size(300.dp)
                 )
-        ) {
-            PintarJugador1(cycle,VM)
-            Botonera(cycle, navController,VM)
-            PintarJugador2(cycle,VM)
-        }
-    }
-
-    @Composable
-    fun PintarJugador2(cycle: Boolean, VM: JvJViewModel) {
-        LazyRow(horizontalArrangement = Arrangement.spacedBy((-200).dp),modifier = Modifier.padding(20.dp)) {
-            //todo hacer que se vea la carta de a quien le toque
-            items(VM.Mjugador2.Mano) {
-                if (!(VM.Mjugador2.suTurno)) {
-                    Image(
-                        painter = painterResource(id = it.idDrawable),
-                        contentDescription = "Carta de J2",
-                        modifier = Modifier.size(300.dp)
-                    )
-                } else {
-                    Image(
-                        painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
-                        contentDescription = "Carta de J2",
-                        modifier = Modifier.size(300.dp)
-                    )
-                }
-            }
-        }
-
-    }
-
-    @Composable
-    fun Botonera(cycle: Boolean, navController: NavController, VM: JvJViewModel) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            Row {
-                Button(onClick = { VM.dameCarta() },enabled = !(VM.partidaFinalizada), shape = RoundedCornerShape(10), colors = ButtonDefaults.buttonColors(Color.White), modifier = Modifier.padding(5.dp)) {
-                    Text(text = "Dame Carta")
-                }
-                Button(onClick = { VM.plantarse() },enabled = !(VM.partidaFinalizada), shape = RoundedCornerShape(10), colors = ButtonDefaults.buttonColors(Color.White), modifier = Modifier.padding(5.dp)) {
-                    Text(text = "plantarse")
-                }
-            }
-            if (VM.partidaFinalizada) {
-                Button(onClick = { navController.navigate(Routes.PantallaVictoria.route) }, shape = RoundedCornerShape(10), colors = ButtonDefaults.buttonColors(Color.White), modifier = Modifier.padding(5.dp)) {
-                    Text(text = "Ver ganador")
-                }
+            } else {
+                Image(
+                    painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
+                    contentDescription = "Carta de J2",
+                    modifier = Modifier.size(300.dp)
+                )
             }
         }
     }
 
-    @Composable
-    fun PintarJugador1(cycle: Boolean,VM: JvJViewModel) {
-        //todo hacer que se muestren cartas solo en el turno de uno
-        LazyRow(horizontalArrangement = Arrangement.spacedBy((-200).dp), modifier = Modifier.padding(20.dp)) {
-            items(VM.Mjugador1.Mano) {
-                if (!(VM.Mjugador1.suTurno)) {
-                    Image(
-                        painter = painterResource(id = it.idDrawable),
-                        contentDescription = "Carta de J2",
-                        modifier = Modifier.size(300.dp)
-                    )
-                } else {
-                    Image(
-                        painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
-                        contentDescription = "Carta de J2",
-                        modifier = Modifier.size(300.dp)
-                    )
-                }
+}
+
+/**
+ * Botonera que da carta, permite plantarse, o muestra la posibilidad de ir a la screen de Victoria
+ * si la partida se ha terminado.
+ */
+@Composable
+fun Botonera(cycle: Boolean, navController: NavController, VM: JvJViewModel) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row {
+            Button(
+                onClick = { VM.dameCarta() },
+                enabled = !(VM.partidaFinalizada),
+                shape = RoundedCornerShape(10),
+                colors = ButtonDefaults.buttonColors(Color.White),
+                modifier = Modifier.padding(5.dp)
+            ) {
+                Text(text = "Dame Carta")
+            }
+            Button(
+                onClick = { VM.plantarse() },
+                enabled = !(VM.partidaFinalizada),
+                shape = RoundedCornerShape(10),
+                colors = ButtonDefaults.buttonColors(Color.White),
+                modifier = Modifier.padding(5.dp)
+            ) {
+                Text(text = "plantarse")
+            }
+        }
+        if (VM.partidaFinalizada) {
+            Button(
+                onClick = { navController.navigate(Routes.PantallaVictoria.route) },
+                shape = RoundedCornerShape(10),
+                colors = ButtonDefaults.buttonColors(Color.White),
+                modifier = Modifier.padding(5.dp)
+            ) {
+                Text(text = "Ver ganador")
             }
         }
     }
+}
 
-    /*
+/**
+ * Impresión del Jugador 1
+ */
+@Composable
+fun PintarJugador1(cycle: Boolean, VM: JvJViewModel) {
+    //todo hacer que se muestren cartas solo en el turno de uno
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy((-200).dp),
+        modifier = Modifier.padding(20.dp)
+    ) {
+        items(VM.Mjugador1.Mano) {
+            if (!(VM.Mjugador1.suTurno)) {
+                Image(
+                    painter = painterResource(id = it.idDrawable),
+                    contentDescription = "Carta de J2",
+                    modifier = Modifier.size(300.dp)
+                )
+            } else {
+                Image(
+                    painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
+                    contentDescription = "Carta de J2",
+                    modifier = Modifier.size(300.dp)
+                )
+            }
+        }
+    }
+}
+
+/*
 Sustituido por una Screen completa
 @Composable
 fun pantallaVictoria(cycle: Boolean) {
-    if (partidaFinalizada){
-        //todo que se muestre el diálogo al plantarse ambos
-        AlertDialog(onDismissRequest = { partidaFinalizada = false }, text = {
-            Column(
-                modifier = Modifier
-                    .size(200.dp), verticalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Text(text = "Puntuación del jugador 1 (Arriba): ${Mjugador1.puntacion}")
-                Text(text = "Puntuación del jugador 2 (Abajo): ${Mjugador2.puntacion}")
-                Text(text = imprimirGanador())
-            }
-        }, confirmButton = {
-            Button(onClick = { partidaFinalizada = false}) {
-                Text(text = "Aceptar")
-            }
-        })
-    }
+if (partidaFinalizada){
+    //todo que se muestre el diálogo al plantarse ambos
+    AlertDialog(onDismissRequest = { partidaFinalizada = false }, text = {
+        Column(
+            modifier = Modifier
+                .size(200.dp), verticalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Text(text = "Puntuación del jugador 1 (Arriba): ${Mjugador1.puntacion}")
+            Text(text = "Puntuación del jugador 2 (Abajo): ${Mjugador2.puntacion}")
+            Text(text = imprimirGanador())
+        }
+    }, confirmButton = {
+        Button(onClick = { partidaFinalizada = false}) {
+            Text(text = "Aceptar")
+        }
+    })
 }
- */
-    @Composable
-    fun mostrarToast(msj: String) {
-        Toast.makeText(LocalContext.current, msj, Toast.LENGTH_SHORT).show()
-    }
+}
+*/

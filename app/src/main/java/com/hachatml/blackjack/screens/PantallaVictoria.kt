@@ -25,6 +25,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.hachatml.blackjack.R
 
+/**
+ * Columna principal de la Screen PantallaVictoria
+ */
 @Composable
 fun VictoryColumn(navController: NavController, VM: JvJViewModel) {
     Column(

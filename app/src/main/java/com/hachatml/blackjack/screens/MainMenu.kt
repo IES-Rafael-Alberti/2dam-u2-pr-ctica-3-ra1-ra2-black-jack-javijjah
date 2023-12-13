@@ -27,6 +27,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.hachatml.blackjack.R
 
+/**
+ * Contiene el Logo principal y el botón "Jugar"
+ */
 @Composable
 fun TitleAndButtons(navController: NavHostController) {
     Column(
