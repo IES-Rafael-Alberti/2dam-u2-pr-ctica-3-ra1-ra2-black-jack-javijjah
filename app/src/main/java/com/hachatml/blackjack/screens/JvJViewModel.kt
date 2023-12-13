@@ -73,7 +73,7 @@ fun imprimirGanador():String{
         return "¡Ha ganado el jugador 1 con ${Mjugador1.puntacion} puntos! "
     }
     else if (Mjugador2.ganador){
-        return "¡Ha ganado el jugador 2 con \n ${Mjugador2.puntacion} puntos! "
+        return "¡Ha ganado el jugador 2 con ${Mjugador2.puntacion} puntos! "
     }
  return "Es un empate!"
 }
