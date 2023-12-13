@@ -39,7 +39,7 @@ import com.hachatml.blackjack.R
     fun MainColumn(navController: NavController, VM:JvJViewModel) {
         val context = LocalContext.current
         val cycle = true
-        if (VM.Mjugador1.Mano.size == 0 && VM.Mjugador2.Mano.size == 0){
+        if (VM.Mjugador1.value!!.Mano.size == 0 && VM.Mjugador2.value!!.Mano.size == 0){
             VM.iniciarPartida(context, navController)
         }
         Column(
@@ -62,8 +62,8 @@ import com.hachatml.blackjack.R
     fun PintarJugador2(cycle: Boolean, VM: JvJViewModel) {
         LazyRow(horizontalArrangement = Arrangement.spacedBy((-200).dp),modifier = Modifier.padding(20.dp)) {
             //todo hacer que se vea la carta de a quien le toque
-            items(VM.Mjugador2.Mano) {
-                if (!(VM.Mjugador2.suTurno)) {
+            items(VM.Mjugador2.value!!.Mano) {
+                if (!(VM.Mjugador2.value!!.suTurno)) {
                     Image(
                         painter = painterResource(id = it.idDrawable),
                         contentDescription = "Carta de J2",
@@ -106,8 +106,8 @@ import com.hachatml.blackjack.R
     fun PintarJugador1(cycle: Boolean,VM: JvJViewModel) {
         //todo hacer que se muestren cartas solo en el turno de uno
         LazyRow(horizontalArrangement = Arrangement.spacedBy((-200).dp), modifier = Modifier.padding(20.dp)) {
-            items(VM.Mjugador1.Mano) {
-                if (!(VM.Mjugador1.suTurno)) {
+            items(VM.Mjugador1.value!!.Mano) {
+                if (!(VM.Mjugador1.value!!.suTurno)) {
                     Image(
                         painter = painterResource(id = it.idDrawable),
                         contentDescription = "Carta de J2",

@@ -37,13 +37,13 @@ fun VictoryColumn(navController: NavController, VM: JvJViewModel) {
     ) {
         Text(text = VM.imprimirGanador(), fontSize = 45.sp, textAlign = TextAlign.Center, lineHeight = 50.sp)
         Text(
-            text = "Puntuación del jugador 1 (Arriba):\n ${VM.Mjugador1.puntacion} puntos",
+            text = "Puntuación del jugador 1 (Arriba):\n ${VM.Mjugador1.value!!.puntacion} puntos",
             fontSize = 20.sp,
             textAlign = TextAlign.Center
         )
         Text(text = "Baraja de J1", fontSize = 15.sp, textAlign = TextAlign.Center)
         LazyRow(horizontalArrangement = Arrangement.Center) {
-            items(VM.Mjugador1.Mano) {
+            items(VM.Mjugador1.value!!.Mano) {
                 Image(
                     painter = painterResource(id = it.idDrawable),
                     contentDescription = "Carta de J1",
@@ -52,13 +52,13 @@ fun VictoryColumn(navController: NavController, VM: JvJViewModel) {
             }
         }
         Text(
-            text = "Puntuación del jugador 2 (Abajo):\n ${VM.Mjugador2.puntacion} puntos",
+            text = "Puntuación del jugador 2 (Abajo):\n ${VM.Mjugador2.value!!.puntacion} puntos",
             fontSize = 20.sp,
             textAlign = TextAlign.Center
         )
         Text(text = "Baraja de J2", fontSize = 15.sp, textAlign = TextAlign.Center)
         LazyRow(horizontalArrangement = Arrangement.Center) {
-            items(VM.Mjugador2.Mano) {
+            items(VM.Mjugador2.value!!.Mano) {
                 Image(
                     painter = painterResource(id = it.idDrawable),
                     contentDescription = "Carta de J1",
