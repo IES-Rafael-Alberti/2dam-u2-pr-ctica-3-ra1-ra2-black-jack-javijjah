@@ -38,7 +38,9 @@ fun TitleAndButtons(navController: NavHostController) {
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "Logo del BlackJack",
-            modifier = Modifier.size(300.dp).padding(50.dp)
+            modifier = Modifier
+                .size(300.dp)
+                .padding(50.dp)
         )
         Button(
             onClick = { navController.navigate(Routes.ModoPVP.route) },

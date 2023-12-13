@@ -31,14 +31,21 @@ import com.hachatml.blackjack.R
 @Composable
 fun VictoryColumn(navController: NavController, VM: JvJViewModel) {
     Column(
-        modifier = Modifier.fillMaxSize().paint(
-            painterResource(id = R.drawable.victory),
-            contentScale = ContentScale.Crop
-        ),
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(id = R.drawable.victory),
+                contentScale = ContentScale.Crop
+            ),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = VM.imprimirGanador(), fontSize = 45.sp, textAlign = TextAlign.Center, lineHeight = 50.sp)
+        Text(
+            text = VM.imprimirGanador(),
+            fontSize = 45.sp,
+            textAlign = TextAlign.Center,
+            lineHeight = 50.sp
+        )
         Text(
             text = "Puntuación del jugador 1 (Arriba):\n ${VM.Mjugador1.puntacion} puntos",
             fontSize = 20.sp,
