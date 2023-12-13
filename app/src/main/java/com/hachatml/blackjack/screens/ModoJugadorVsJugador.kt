@@ -157,7 +157,6 @@ Sustituido por una Screen completa
 @Composable
 fun pantallaVictoria(cycle: Boolean) {
 if (partidaFinalizada){
-    //todo que se muestre el diálogo al plantarse ambos
     AlertDialog(onDismissRequest = { partidaFinalizada = false }, text = {
         Column(
             modifier = Modifier
