@@ -3,21 +3,14 @@ package com.hachatml.blackjack
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import com.hachatml.blackjack.ui.theme.BlackJackTheme
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.hachatml.blackjack.screens.JvJViewModel
 import com.hachatml.blackjack.screens.MainColumn
 import com.hachatml.blackjack.screens.Routes
@@ -34,6 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    //Creamos el navController y el VM del BlackJack
                     val navController = rememberNavController()
                     val blackJackVM = JvJViewModel()
                     NavHost(

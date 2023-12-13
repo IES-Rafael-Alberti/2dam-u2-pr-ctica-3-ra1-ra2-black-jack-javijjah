@@ -1,6 +1,5 @@
 package com.hachatml.blackjack.screens
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.navigation.NavController
 import com.hachatml.blackjack.Classes.Baraja
