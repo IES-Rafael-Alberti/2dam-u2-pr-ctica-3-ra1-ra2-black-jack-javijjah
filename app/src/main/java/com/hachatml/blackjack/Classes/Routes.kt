@@ -1,4 +1,4 @@
-package com.hachatml.blackjack.screens
+package com.hachatml.blackjack.Classes
 
 /**
  * Contiene todas las rutas del Navegador

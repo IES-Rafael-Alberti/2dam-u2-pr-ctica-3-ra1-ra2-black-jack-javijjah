@@ -13,7 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.hachatml.blackjack.screens.JvJViewModel
 import com.hachatml.blackjack.screens.MainColumn
-import com.hachatml.blackjack.screens.Routes
+import com.hachatml.blackjack.Classes.Routes
 import com.hachatml.blackjack.screens.TitleAndButtons
 import com.hachatml.blackjack.screens.VictoryColumn
 

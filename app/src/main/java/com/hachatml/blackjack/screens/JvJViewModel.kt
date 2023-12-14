@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.navigation.NavController
 import com.hachatml.blackjack.Classes.Baraja
 import com.hachatml.blackjack.Classes.Jugador
+import com.hachatml.blackjack.Classes.Routes
 import com.hachatml.cartamasalta.enums.Naipes
 
 class JvJViewModel {

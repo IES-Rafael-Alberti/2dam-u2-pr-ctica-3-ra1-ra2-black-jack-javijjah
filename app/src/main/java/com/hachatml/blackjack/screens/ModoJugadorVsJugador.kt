@@ -1,5 +1,6 @@
 package com.hachatml.blackjack.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.navigation.NavController
+import com.hachatml.blackjack.Classes.Routes
 import com.hachatml.blackjack.R
 
 /**
@@ -34,6 +36,10 @@ fun MainColumn(navController: NavController, VM: JvJViewModel) {
     val context = LocalContext.current
     //Esta variable se pasa simplemente para actualizar los datos, pero no hace nada
     val cycle = true
+
+    BackHandler {
+        navController.navigate(Routes.MainMenu.route)
+    }
     if (VM.Mjugador1.Mano.size == 0 && VM.Mjugador2.Mano.size == 0) {
         VM.iniciarPartida(context, navController)
     }
@@ -62,7 +68,6 @@ fun PintarJugador2(cycle: Boolean, VM: JvJViewModel) {
         horizontalArrangement = Arrangement.spacedBy((-200).dp),
         modifier = Modifier.padding(20.dp)
     ) {
-        //todo hacer que se vea la carta de a quien le toque
         items(VM.Mjugador2.Mano) {
             if (!(VM.Mjugador2.suTurno)) {
                 Image(
@@ -129,7 +134,6 @@ fun Botonera(cycle: Boolean, navController: NavController, VM: JvJViewModel) {
  */
 @Composable
 fun PintarJugador1(cycle: Boolean, VM: JvJViewModel) {
-    //todo hacer que se muestren cartas solo en el turno de uno
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy((-200).dp),
         modifier = Modifier.padding(20.dp)
