@@ -1,3 +1,60 @@
+# BlackJack de Javier Jiménez-Alfaro Hacha
+
+## Funcionalidades
+
+-La aplicación nos navegará entre Screens al iniciar y al completar una partida.
+-Para iniciar una partida, se hará desde la pantalla de victoria, que sólo se muestra al completar una partida. Si salimos al menú principal y volvemos, nuestro progreso se salvará.
+-Los botones se deshabilitarán cuando la partida se complete y hasta que no se inicie una nueva. A su vez, el botón que nos llevará a la pantalla de victoria sólo se mostrará cuando la partida esté finalizada.
+-Si la baraja se completa, no se robarán más cartas.
+-Si el jugador tiene más cartas que las que se pueden mostrar en pantalla, su baraja se podrá deslizar para mostrar todas, tanto en la partida como en la pantalla de victoria.
+
+## Criterios de Evaluación
+### Utiliza clases de ViewModel para gestionar la lógica de las Vistas.
+En mi caso, he utilizado una clase ViewModel para las dos screens que procesan información (La del PvP y la de Victoria), ya que los datos son los mismos, pero sí, tengo una clase ViewModel exclusivamente con lógica y las Screens con únicamente Composables(Elementos visuales)
+### Crea en las clases ViewModel variables privadas (MutableLiveData) y públicas (LiveData), junto con variables observables de la variable pública del ViewModel en la Vista (Screen).
+No superado.
+### Cada pantalla se escribe en un fichero "Screen" diferente.
+Superado. Las Screens son ModoJugadorVSJugador, PantallaVictoria y MainMenu. Estas están con el ViewModel en el Package _screens_
+### Organiza las Vistas con distintas funciones Composable que componen la pantalla visual completa.
+En mis clases, las visuales son generalmente divididas en varias funciones Composable, que luego son llamadas en una columna principal la cual recoge a todas.
+### Utiliza la función composable NavHost para la navegación entre pantallas (screens diferentes).
+Superado.
+### Existe limpieza y organización del código.
+Espero que superado.
+### Incluye comentarios internos explicativos.
+Superado.
+### Calidad del código y funcionalidad correcta.
+Espero que superado.
+### Las clases y funciones están documentadas (KDoc).
+Superado.
+### Las clases de datos las inicializa en un sitio correcto, dónde solo se van a llamar una vez, evitando así los problemas de nulidad en el código.
+Creo que superado.
+### Manejo correcto de errores y excepciones, evitando "casques" en la aplicación.
+Superado. La aplicación no tiene posibilidad a errores, ya que sólo funciona mediante botones y he probado todos los casos. No he controlado excepciones porque no lo he sentido necesario.
+### En las Vistas solo existen componentes gráficos, llamadas a variables observables o funciones del ViewModel, evitando incluir lógica en ellas.
+Superado.
+
+## Ramas
+Mi proyecto tiene 5 ramas.
+
+### main
+Donde he realizado la mayor parte del progreso y de los commits. Es la rama más avanzada del proyecto.
+
+### MutableDataTest
+Un intento fallido de convertir todas mis variables en LiveData y MutableLiveData<>
+
+### ViewModel
+La rama que utilicé para hacer el paso al modelo ViewModel
+
+### testDiego
+Una rama que creaste tú para enseñarme una cosa en clase. La utilicé un tiempo para terminar de aplicar lo aprendido y volví a _main_
+
+### origin/feedback
+La autogenerada por GitHub, no la he utilizado.
+
+
+
+---
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/2k2-pIk4)
 # Práctica 3 - Black Jack
 
