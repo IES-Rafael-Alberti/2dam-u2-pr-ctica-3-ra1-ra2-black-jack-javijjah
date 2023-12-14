@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.navigation.NavController
 import com.hachatml.blackjack.Classes.Baraja
 import com.hachatml.blackjack.Classes.Jugador
+import com.hachatml.cartamasalta.enums.Naipes
 
 class JvJViewModel {
     val Mjugador1 = Jugador()
@@ -101,14 +102,33 @@ class JvJViewModel {
      * Calcula los puntos de cada jugador y los mete en su respectivo objeto Jugador en la var puntuacion
      */
     fun calcularPuntos() {
+        var j1tieneAS = false
+        var j2tieneAS = false
         Mjugador1.puntacion = 0
         Mjugador2.puntacion = 0
-        //todo puntos del AS
         for (carta in Mjugador1.Mano) {
-            Mjugador1.puntacion += carta.puntosMax
+            if (carta.nombre != Naipes.AS) {
+                Mjugador1.puntacion += carta.puntosMax
+            } else {
+                j1tieneAS = true
+            }
+        }
+        if (Mjugador1.puntacion + 11 > 21 && j1tieneAS) {
+            Mjugador1.puntacion += 1
+        } else if (j1tieneAS) {
+            Mjugador1.puntacion += 11
         }
         for (carta in Mjugador2.Mano) {
-            Mjugador2.puntacion += carta.puntosMax
+            if (carta.nombre != Naipes.AS) {
+                Mjugador2.puntacion += carta.puntosMax
+            } else {
+                j2tieneAS = true
+            }
+            if (Mjugador2.puntacion + 11 > 21 && j2tieneAS) {
+                Mjugador2.puntacion += 1
+            } else if (j2tieneAS) {
+                Mjugador2.puntacion += 11
+            }
         }
     }
 
