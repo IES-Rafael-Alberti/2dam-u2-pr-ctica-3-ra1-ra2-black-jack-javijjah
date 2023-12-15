@@ -2,12 +2,13 @@
 
 ## Funcionalidades
 
--La aplicación nos navegará entre Screens al iniciar y al completar una partida.
--Para iniciar una partida, se hará desde la pantalla de victoria, que sólo se muestra al completar una partida. Si salimos al menú principal y volvemos, nuestro progreso se salvará.
--Los botones se deshabilitarán cuando la partida se complete y hasta que no se inicie una nueva. A su vez, el botón que nos llevará a la pantalla de victoria sólo se mostrará cuando la partida esté finalizada.
--Si la baraja se completa, no se robarán más cartas.
--Si el jugador tiene más cartas que las que se pueden mostrar en pantalla, su baraja se podrá deslizar para mostrar todas, tanto en la partida como en la pantalla de victoria.
-
+- La aplicación nos navegará entre Screens al iniciar y al completar una partida.
+- Para iniciar una partida, se hará desde la pantalla de victoria, que sólo se muestra al completar una partida. Si salimos al menú principal y volvemos, nuestro progreso se salvará.
+- Los botones se deshabilitarán cuando la partida se complete y hasta que no se inicie una nueva. A su vez, el botón que nos llevará a la pantalla de victoria sólo se mostrará cuando la partida esté finalizada.
+- Si la baraja se completa, no se robarán más cartas.
+- Si el jugador tiene más cartas que las que se pueden mostrar en pantalla, su baraja se podrá deslizar para mostrar todas, tanto en la partida como en la pantalla de victoria.
+- Existe un modo para jugar contra otro jugador, y un modo para jugar contra la IA.
+  
 ## Criterios de Evaluación
 ### Utiliza clases de ViewModel para gestionar la lógica de las Vistas.
 En mi caso, he utilizado una clase ViewModel para las dos screens que procesan información (La del PvP y la de Victoria), ya que los datos son los mismos, pero sí, tengo una clase ViewModel exclusivamente con lógica y las Screens con únicamente Composables(Elementos visuales)
