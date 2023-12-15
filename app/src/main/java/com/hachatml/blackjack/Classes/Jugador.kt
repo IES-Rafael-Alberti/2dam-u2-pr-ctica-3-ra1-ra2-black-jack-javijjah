@@ -13,6 +13,9 @@ import com.hachatml.blackjack.R
 import com.hachatml.cartamasalta.enums.Naipes
 import com.hachatml.cartamasalta.enums.Palos
 
+/**
+ * La clase que se encarga de gestionar cualquier del juego (IA incluida)
+ */
 class Jugador {
     var Mano = mutableStateListOf<Carta>()
     var plantado: Boolean = false

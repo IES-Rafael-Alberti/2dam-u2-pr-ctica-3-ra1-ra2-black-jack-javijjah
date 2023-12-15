@@ -55,7 +55,7 @@ fun MainColumn(navController: NavController, VM: JvJViewModel) {
     ) {
         PintarJugador1(cycle, VM)
         Botonera(cycle, navController, VM)
-        PintarIA(cycle, VM)
+        PintarJugador2(cycle, VM)
     }
 }
 
@@ -63,29 +63,20 @@ fun MainColumn(navController: NavController, VM: JvJViewModel) {
  * Impresión del jugador 2
  */
 @Composable
-fun PintarIA(cycle: Boolean, VM: JvJViewModel) {
+fun PintarJugador2(cycle: Boolean, VM: JvJViewModel) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy((-200).dp),
         modifier = Modifier.padding(20.dp)
     ) {
         items(VM.Mjugador2.Mano) {
-            if (!(VM.Mjugador2.suTurno)) {
                 Image(
-                    painter = painterResource(id = R.drawable.facedown),
-                    contentDescription = "Carta de J2",
-                    modifier = Modifier.size(300.dp)
-                )
-            } else {
-                Image(
-                    painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
+                    painter = painterResource(id = it.idDrawable),
                     contentDescription = "Carta de J2",
                     modifier = Modifier.size(300.dp)
                 )
             }
         }
     }
-
-}
 
 /**
  * Botonera que da carta, permite plantarse, o muestra la posibilidad de ir a la screen de Victoria
@@ -139,19 +130,11 @@ fun PintarJugador1(cycle: Boolean, VM: JvJViewModel) {
         modifier = Modifier.padding(20.dp)
     ) {
         items(VM.Mjugador1.Mano) {
-            if (!(VM.Mjugador1.suTurno)) {
-                Image(
-                    painter = painterResource(id = it.idDrawable),
-                    contentDescription = "Carta de J2",
-                    modifier = Modifier.size(300.dp)
-                )
-            } else {
-                Image(
-                    painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
-                    contentDescription = "Carta de J2",
-                    modifier = Modifier.size(300.dp)
-                )
-            }
+            Image(
+                painter = painterResource(id = it.idDrawable),
+                contentDescription = "Carta de J1",
+                modifier = Modifier.size(300.dp)
+            )
         }
     }
 }

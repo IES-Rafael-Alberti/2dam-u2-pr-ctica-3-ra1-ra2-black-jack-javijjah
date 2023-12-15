@@ -4,6 +4,9 @@ import android.content.Context
 import com.hachatml.cartamasalta.enums.Naipes
 import com.hachatml.cartamasalta.enums.Palos
 
+/**
+ * La baraja que sostiene las cartas y gestiona la entrega
+ */
 class Baraja {
     companion object {
         var listaCartas = ArrayList<Carta>()

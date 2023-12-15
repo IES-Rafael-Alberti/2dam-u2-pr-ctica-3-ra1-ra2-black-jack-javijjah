@@ -7,6 +7,11 @@ import com.hachatml.blackjack.Classes.Jugador
 import com.hachatml.blackjack.Classes.Routes
 import com.hachatml.cartamasalta.enums.Naipes
 
+/**
+ *ViewModel del BlackJack del modo Jugador contra la IA.
+ *
+ */
+
 class JvIAViewModel {
     val Mjugador1 = Jugador()
     val IA = Jugador()

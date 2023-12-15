@@ -7,6 +7,9 @@ import com.hachatml.blackjack.R
 import com.hachatml.cartamasalta.enums.Naipes
 import com.hachatml.cartamasalta.enums.Palos
 
+/**
+ * Sostiene las Cartas que se componen en la baraja y se entregan al jugador
+ */
 class Carta(
     var nombre: Naipes,
     var palo: Palos,

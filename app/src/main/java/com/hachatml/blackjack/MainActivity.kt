@@ -20,6 +20,9 @@ import com.hachatml.blackjack.screens.JvIAViewModel
 import com.hachatml.blackjack.screens.TitleAndButtons
 import com.hachatml.blackjack.screens.VictoryColumn
 
+/**
+ * La actividad principal, que genera un NavController
+ */
 class MainActivity : ComponentActivity() {
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
