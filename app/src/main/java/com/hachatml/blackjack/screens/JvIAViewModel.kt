@@ -52,21 +52,19 @@ class JvIAViewModel {
             if (jugador1.plantado && jugador2.plantado) {
                 finalizarPartida()
             }
-        } while (Mjugador1.plantado&&!partidaFinalizada)
+        } while (Mjugador1.plantado && !partidaFinalizada)
     }
 
-    fun cambiarTurno(jugador1: Jugador,jugador2: Jugador){
+    fun cambiarTurno(jugador1: Jugador, jugador2: Jugador) {
         jugador1.suTurno = !(jugador1.suTurno)
         jugador2.suTurno = !(jugador2.suTurno)
     }
+
     fun JugadaIA() {
         calcularPuntos()
-        var nombre:String = Baraja.ultimaCarta().nombre.toString()
-        var punt:Int = Baraja.ultimaCarta().puntosMax
         if (Baraja.ultimaCarta().puntosMax + IA.puntacion < 21) {
             IA.RobarCarta()
-        }
-        else{
+        } else {
             IA.sePlanta()
         }
     }

@@ -75,7 +75,12 @@ fun VictoryColumn(navController: NavController, VM: JvJViewModel) {
             textAlign = TextAlign.Center,
             color = Color.White
         )
-        Text(text = "Baraja de J2", fontSize = 15.sp, textAlign = TextAlign.Center, color = Color.White)
+        Text(
+            text = "Baraja de J2",
+            fontSize = 15.sp,
+            textAlign = TextAlign.Center,
+            color = Color.White
+        )
         LazyRow(horizontalArrangement = Arrangement.Center) {
             items(VM.Mjugador2.Mano) {
                 Image(

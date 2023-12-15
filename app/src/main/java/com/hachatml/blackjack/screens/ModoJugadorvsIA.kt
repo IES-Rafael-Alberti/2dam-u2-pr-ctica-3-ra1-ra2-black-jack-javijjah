@@ -68,11 +68,11 @@ fun PintarIA(cycle: Boolean, VM: JvIAViewModel) {
         modifier = Modifier.padding(20.dp)
     ) {
         items(VM.IA.Mano) {
-                Image(
-                    painter = painterResource(id = R.drawable.facedown),
-                    contentDescription = "Carta de La IA",
-                    modifier = Modifier.size(300.dp)
-                )
+            Image(
+                painter = painterResource(id = R.drawable.facedown),
+                contentDescription = "Carta de La IA",
+                modifier = Modifier.size(300.dp)
+            )
         }
     }
 }
