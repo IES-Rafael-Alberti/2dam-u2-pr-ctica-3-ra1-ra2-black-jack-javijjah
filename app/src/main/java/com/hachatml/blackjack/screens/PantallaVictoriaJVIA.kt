@@ -46,12 +46,12 @@ fun VictoryColumn(navController: NavController, VM: JvIAViewModel) {
             text = VM.imprimirGanador(),
             fontSize = 45.sp,
             textAlign = TextAlign.Center,
-            lineHeight = 50.sp
+            lineHeight = 50.sp, color = Color.White
         )
         Text(
             text = "Puntuación de la IA (Arriba):\n ${VM.IA.puntacion} puntos",
             fontSize = 20.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center, color = Color.White
         )
         Text(text = "Baraja de la IA", fontSize = 15.sp, textAlign = TextAlign.Center)
         LazyRow(horizontalArrangement = Arrangement.Center) {
@@ -66,9 +66,9 @@ fun VictoryColumn(navController: NavController, VM: JvIAViewModel) {
         Text(
             text = "Puntuación del Jugador (Abajo):\n ${VM.Mjugador1.puntacion} puntos",
             fontSize = 20.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center, color = Color.White
         )
-        Text(text = "Baraja de J1", fontSize = 15.sp, textAlign = TextAlign.Center)
+        Text(text = "Baraja de J1", fontSize = 15.sp, textAlign = TextAlign.Center, color = Color.White)
         LazyRow(horizontalArrangement = Arrangement.Center) {
             items(VM.Mjugador1.Mano) {
                 Image(
@@ -87,7 +87,7 @@ fun VictoryColumn(navController: NavController, VM: JvIAViewModel) {
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier.padding(5.dp)
         ) {
-            Text(text = "Jugar otra vez")
+            Text(text = "Jugar otra vez", color = Color.Black)
         }
     }
 }

@@ -94,7 +94,7 @@ fun Botonera(cycle: Boolean, navController: NavController, VM: JvIAViewModel) {
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.padding(5.dp)
             ) {
-                Text(text = "Dame Carta")
+                Text(text = "Dame Carta", color = Color.Black)
             }
             Button(
                 onClick = { VM.plantarse() },
@@ -103,7 +103,7 @@ fun Botonera(cycle: Boolean, navController: NavController, VM: JvIAViewModel) {
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.padding(5.dp)
             ) {
-                Text(text = "plantarse")
+                Text(text = "Plantarse", color = Color.Black)
             }
         }
         if (VM.partidaFinalizada) {
@@ -113,7 +113,7 @@ fun Botonera(cycle: Boolean, navController: NavController, VM: JvIAViewModel) {
                 colors = ButtonDefaults.buttonColors(Color.White),
                 modifier = Modifier.padding(5.dp)
             ) {
-                Text(text = "Ver ganador")
+                Text(text = "Ver ganador", color = Color.Black)
             }
         }
     }
