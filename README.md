@@ -11,11 +11,11 @@
   
 ## Criterios de Evaluación
 ### Utiliza clases de ViewModel para gestionar la lógica de las Vistas.
-En mi caso, he utilizado una clase ViewModel para las dos screens que procesan información (La del PvP y la de Victoria), ya que los datos son los mismos, pero sí, tengo una clase ViewModel exclusivamente con lógica y las Screens con únicamente Composables(Elementos visuales)
+En mi caso, he utilizado una clase ViewModel para las screens que procesan información (La del PvP, PVIA y la de Victoria), ya que los datos son los mismos, pero sí, tengo una clase ViewModel exclusivamente con lógica y las Screens con únicamente Composables(Elementos visuales)
 ### Crea en las clases ViewModel variables privadas (MutableLiveData) y públicas (LiveData), junto con variables observables de la variable pública del ViewModel en la Vista (Screen).
 No superado.
 ### Cada pantalla se escribe en un fichero "Screen" diferente.
-Superado. Las Screens son ModoJugadorVSJugador, PantallaVictoria y MainMenu. Estas están con el ViewModel en el Package _screens_
+Superado. Las Screens son ModoJugadorVSJugador, ModoJugadorVsIA, PantallaVictoria y MainMenu. Estas están con el ViewModel en el Package _screens_
 ### Organiza las Vistas con distintas funciones Composable que componen la pantalla visual completa.
 En mis clases, las visuales son generalmente divididas en varias funciones Composable, que luego son llamadas en una columna principal la cual recoge a todas.
 ### Utiliza la función composable NavHost para la navegación entre pantallas (screens diferentes).
@@ -42,13 +42,13 @@ Mi proyecto tiene 5 ramas.
 Donde he realizado la mayor parte del progreso y de los commits. Es la rama más avanzada del proyecto.
 
 ### MutableDataTest
-Un intento fallido de convertir todas mis variables en LiveData y MutableLiveData<>
+Un intento fallido de convertir todas mis variables en LiveData y MutableLiveData<>.
 
 ### ViewModel
-La rama que utilicé para hacer el paso al modelo ViewModel
+La rama que utilicé para hacer el paso al modelo ViewModel.
 
 ### testDiego
-Una rama que creaste tú para enseñarme una cosa en clase. La utilicé un tiempo para terminar de aplicar lo aprendido y volví a _main_
+Una rama que creaste tú para enseñarme una cosa en clase. La utilicé un tiempo para terminar de aplicar lo aprendido y volví a _main_.
 
 ### origin/feedback
 La autogenerada por GitHub, no la he utilizado.
