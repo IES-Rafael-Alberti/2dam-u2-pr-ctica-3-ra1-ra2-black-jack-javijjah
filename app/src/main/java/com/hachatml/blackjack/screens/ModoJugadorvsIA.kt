@@ -129,19 +129,11 @@ fun PintarJugador1(cycle: Boolean, VM: JvIAViewModel) {
         modifier = Modifier.padding(20.dp)
     ) {
         items(VM.Mjugador1.Mano) {
-            if (!(VM.Mjugador1.suTurno)) {
                 Image(
                     painter = painterResource(id = it.idDrawable),
                     contentDescription = "Carta de La IA",
                     modifier = Modifier.size(300.dp)
                 )
-            } else {
-                Image(
-                    painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
-                    contentDescription = "Carta de La IA",
-                    modifier = Modifier.size(300.dp)
-                )
-            }
         }
     }
 }

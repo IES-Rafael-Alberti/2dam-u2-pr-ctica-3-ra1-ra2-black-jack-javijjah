@@ -71,7 +71,7 @@ fun PintarIA(cycle: Boolean, VM: JvJViewModel) {
         items(VM.Mjugador2.Mano) {
             if (!(VM.Mjugador2.suTurno)) {
                 Image(
-                    painter = painterResource(id = it.idDrawable),
+                    painter = painterResource(id = R.drawable.facedown),
                     contentDescription = "Carta de J2",
                     modifier = Modifier.size(300.dp)
                 )
