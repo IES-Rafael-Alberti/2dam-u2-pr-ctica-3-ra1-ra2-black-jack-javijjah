@@ -47,6 +47,10 @@ class Baraja {
             crearBaraja(context)
         }
 
+        fun ultimaCarta(): Carta {
+            return listaCartas.last()
+        }
+
         fun dameCarta(): Carta {
             var ultimaCarta = listaCartas.get(listaCartas.size - 1)
             listaCartas.remove(ultimaCarta)

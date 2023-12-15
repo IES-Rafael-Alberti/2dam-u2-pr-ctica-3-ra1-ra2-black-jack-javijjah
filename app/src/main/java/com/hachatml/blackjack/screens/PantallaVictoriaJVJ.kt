@@ -27,7 +27,7 @@ import com.hachatml.blackjack.Classes.Routes
 import com.hachatml.blackjack.R
 
 /**
- * Columna principal de la Screen PantallaVictoria
+ * Columna principal de la Screen PantallaVictoriaJVJ
  */
 @Composable
 fun VictoryColumn(navController: NavController, VM: JvJViewModel) {
@@ -86,7 +86,7 @@ fun VictoryColumn(navController: NavController, VM: JvJViewModel) {
             colors = ButtonDefaults.buttonColors(Color.White),
             modifier = Modifier.padding(5.dp)
         ) {
-            Text(text = "Jugar otra vez")
+            Text(text = "Jugar otra vez", color = Color.Black)
         }
     }
 }

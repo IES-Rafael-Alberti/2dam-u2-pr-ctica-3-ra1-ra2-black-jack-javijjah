@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -51,7 +52,17 @@ fun TitleAndButtons(navController: NavHostController) {
             ),
             modifier = Modifier.padding(5.dp)
         ) {
-            Text(text = "Jugar")
+            Text(text = "Jugar contra otro Jugador", color = Color.Black)
+        }
+        Button(
+            onClick = { navController.navigate(Routes.ModoPVIA.route) },
+            shape = RoundedCornerShape(10),
+            colors = ButtonDefaults.buttonColors(
+                androidx.compose.ui.graphics.Color.White
+            ),
+            modifier = Modifier.padding(5.dp)
+        ) {
+            Text(text = "Jugar contra la IA", color = Color.Black)
         }
     }
 }

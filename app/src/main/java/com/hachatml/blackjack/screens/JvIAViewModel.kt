@@ -7,9 +7,9 @@ import com.hachatml.blackjack.Classes.Jugador
 import com.hachatml.blackjack.Classes.Routes
 import com.hachatml.cartamasalta.enums.Naipes
 
-class JvJViewModel {
+class JvIAViewModel {
     val Mjugador1 = Jugador()
-    val Mjugador2 = Jugador()
+    val IA = Jugador()
     var partidaFinalizada = false
     var VMnavController: NavController? = null
 
@@ -20,7 +20,7 @@ class JvJViewModel {
     fun iniciarPartida(context: Context, navController: NavController) {
         Baraja.crearBaraja(context)
         Mjugador1.RobarCarta()
-        Mjugador2.RobarCarta()
+        IA.RobarCarta()
         Mjugador1.suTurno = true
         VMnavController = navController
     }
@@ -40,14 +40,34 @@ class JvJViewModel {
      * ambos jugadores están plantados, esta función llama a la de fin de partida.
      */
     fun cambioDeTurno(jugador1: Jugador, jugador2: Jugador) {
+        do {
+            cambiarTurno(jugador1, jugador2)
+            if (devolverJugadorActivo(jugador1, jugador2).plantado) {
+                cambiarTurno(jugador1, jugador2)
+            }
+            if (devolverJugadorActivo(jugador1, jugador2) == IA) {
+                JugadaIA()
+                cambiarTurno(jugador1, jugador2)
+            }
+            if (jugador1.plantado && jugador2.plantado) {
+                finalizarPartida()
+            }
+        } while (Mjugador1.plantado&&!partidaFinalizada)
+    }
+
+    fun cambiarTurno(jugador1: Jugador,jugador2: Jugador){
         jugador1.suTurno = !(jugador1.suTurno)
         jugador2.suTurno = !(jugador2.suTurno)
-        if (devolverJugadorActivo(jugador1, jugador2).plantado) {
-            jugador1.suTurno = !(jugador1.suTurno)
-            jugador2.suTurno = !(jugador2.suTurno)
+    }
+    fun JugadaIA() {
+        calcularPuntos()
+        var nombre:String = Baraja.ultimaCarta().nombre.toString()
+        var punt:Int = Baraja.ultimaCarta().puntosMax
+        if (Baraja.ultimaCarta().puntosMax + IA.puntacion < 21) {
+            IA.RobarCarta()
         }
-        if (jugador1.plantado && jugador2.plantado) {
-            finalizarPartida()
+        else{
+            IA.sePlanta()
         }
     }
 
@@ -59,7 +79,7 @@ class JvJViewModel {
         partidaFinalizada = true
         calcularPuntos()
         calcularGanador()
-        VMnavController?.navigate(Routes.PantallaVictoriaJVJ.route)
+        VMnavController?.navigate(Routes.PantallaVictoriaJVIA.route)
     }
 
     /**
@@ -67,19 +87,19 @@ class JvJViewModel {
      * la variable ganador en el objeto Jugador.
      */
     fun calcularGanador() {
-        if (Mjugador1.puntacion <= 21 && Mjugador2.puntacion <= 21) {
-            if (Mjugador1.puntacion > Mjugador2.puntacion) {
+        if (Mjugador1.puntacion <= 21 && IA.puntacion <= 21) {
+            if (Mjugador1.puntacion > IA.puntacion) {
                 Mjugador1.ganador = true
-            } else if (Mjugador2.puntacion > Mjugador1.puntacion) {
-                Mjugador2.ganador = true
+            } else if (IA.puntacion > Mjugador1.puntacion) {
+                IA.ganador = true
             }
         } else {
-            if (Mjugador1.puntacion > 21 && Mjugador2.puntacion > 21) {
+            if (Mjugador1.puntacion > 21 && IA.puntacion > 21) {
                 Mjugador1.ganador = false
-                Mjugador2.ganador = false
+                IA.ganador = false
             } else if (Mjugador1.puntacion > 21) {
-                Mjugador2.ganador = true
-            } else if (Mjugador2.puntacion > 21) {
+                IA.ganador = true
+            } else if (IA.puntacion > 21) {
                 Mjugador1.ganador = true
             }
         }
@@ -89,12 +109,12 @@ class JvJViewModel {
      * Devuelve un String con la condición de victoria que se ha cumplido.
      */
     fun imprimirGanador(): String {
-        if (Mjugador1.ganador && Mjugador2.ganador) {
+        if (Mjugador1.ganador && IA.ganador) {
             return "Error de cálculo"
         } else if (Mjugador1.ganador) {
-            return "¡Ha ganado el jugador 1 con ${Mjugador1.puntacion} puntos! "
-        } else if (Mjugador2.ganador) {
-            return "¡Ha ganado el jugador 2 con ${Mjugador2.puntacion} puntos! "
+            return "¡Ha ganado el jugador con ${Mjugador1.puntacion} puntos! ¡Enhorabuena!"
+        } else if (IA.ganador) {
+            return "¡Ha ganado la IA con ${IA.puntacion} puntos! ¡Mala suerte!"
         }
         return "Es un empate!"
     }
@@ -106,7 +126,7 @@ class JvJViewModel {
         var j1tieneAS = false
         var j2tieneAS = false
         Mjugador1.puntacion = 0
-        Mjugador2.puntacion = 0
+        IA.puntacion = 0
         for (carta in Mjugador1.Mano) {
             if (carta.nombre != Naipes.AS) {
                 Mjugador1.puntacion += carta.puntosMax
@@ -119,16 +139,16 @@ class JvJViewModel {
         } else if (j1tieneAS) {
             Mjugador1.puntacion += 11
         }
-        for (carta in Mjugador2.Mano) {
+        for (carta in IA.Mano) {
             if (carta.nombre != Naipes.AS) {
-                Mjugador2.puntacion += carta.puntosMax
+                IA.puntacion += carta.puntosMax
             } else {
                 j2tieneAS = true
             }
-            if (Mjugador2.puntacion + 11 > 21 && j2tieneAS) {
-                Mjugador2.puntacion += 1
+            if (IA.puntacion + 11 > 21 && j2tieneAS) {
+                IA.puntacion += 1
             } else if (j2tieneAS) {
-                Mjugador2.puntacion += 11
+                IA.puntacion += 11
             }
         }
     }
@@ -137,16 +157,16 @@ class JvJViewModel {
      * Le da una carta al jugador activo y cambia de turno.
      */
     fun dameCarta() {
-        devolverJugadorActivo(Mjugador1, Mjugador2).RobarCarta()
-        cambioDeTurno(Mjugador1, Mjugador2)
+        devolverJugadorActivo(Mjugador1, IA).RobarCarta()
+        cambioDeTurno(Mjugador1, IA)
     }
 
     /**
      * Planta al jugador activo y cambia de turno.
      */
     fun plantarse() {
-        devolverJugadorActivo(Mjugador1, Mjugador2).sePlanta()
-        cambioDeTurno(Mjugador1, Mjugador2)
+        devolverJugadorActivo(Mjugador1, IA).sePlanta()
+        cambioDeTurno(Mjugador1, IA)
     }
 
     /**
@@ -154,7 +174,7 @@ class JvJViewModel {
      */
     fun reiniciarPartida() {
         Mjugador1.reiniciarJugador()
-        Mjugador2.reiniciarJugador()
+        IA.reiniciarJugador()
         partidaFinalizada = false
     }
 }

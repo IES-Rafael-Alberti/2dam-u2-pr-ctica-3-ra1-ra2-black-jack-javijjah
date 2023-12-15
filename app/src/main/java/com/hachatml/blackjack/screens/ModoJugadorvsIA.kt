@@ -31,16 +31,15 @@ import com.hachatml.blackjack.R
  *Columna principal la cual contiene el resto de objetos
  */
 @Composable
-fun MainColumn(navController: NavController, VM: JvJViewModel) {
+fun MainColumn(navController: NavController, VM: JvIAViewModel) {
     //Este contexto se utilizará para obtener los Drawables
     val context = LocalContext.current
     //Esta variable se pasa simplemente para actualizar los datos, pero no hace nada
     val cycle = true
-
     BackHandler {
         navController.navigate(Routes.MainMenu.route)
     }
-    if (VM.Mjugador1.Mano.size == 0 && VM.Mjugador2.Mano.size == 0) {
+    if (VM.Mjugador1.Mano.size == 0 && VM.IA.Mano.size == 0) {
         VM.iniciarPartida(context, navController)
     }
     Column(
@@ -53,38 +52,29 @@ fun MainColumn(navController: NavController, VM: JvJViewModel) {
                 contentScale = ContentScale.Crop
             )
     ) {
-        PintarJugador1(cycle, VM)
-        Botonera(cycle, navController, VM)
         PintarIA(cycle, VM)
+        Botonera(cycle, navController, VM)
+        PintarJugador1(cycle, VM)
     }
 }
 
 /**
- * Impresión del jugador 2
+ * Impresión de las cartas de la IA
  */
 @Composable
-fun PintarIA(cycle: Boolean, VM: JvJViewModel) {
+fun PintarIA(cycle: Boolean, VM: JvIAViewModel) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy((-200).dp),
         modifier = Modifier.padding(20.dp)
     ) {
-        items(VM.Mjugador2.Mano) {
-            if (!(VM.Mjugador2.suTurno)) {
+        items(VM.IA.Mano) {
                 Image(
-                    painter = painterResource(id = it.idDrawable),
-                    contentDescription = "Carta de J2",
+                    painter = painterResource(id = R.drawable.facedown),
+                    contentDescription = "Carta de La IA",
                     modifier = Modifier.size(300.dp)
                 )
-            } else {
-                Image(
-                    painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
-                    contentDescription = "Carta de J2",
-                    modifier = Modifier.size(300.dp)
-                )
-            }
         }
     }
-
 }
 
 /**
@@ -92,7 +82,7 @@ fun PintarIA(cycle: Boolean, VM: JvJViewModel) {
  * si la partida se ha terminado.
  */
 @Composable
-fun Botonera(cycle: Boolean, navController: NavController, VM: JvJViewModel) {
+fun Botonera(cycle: Boolean, navController: NavController, VM: JvIAViewModel) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -130,10 +120,10 @@ fun Botonera(cycle: Boolean, navController: NavController, VM: JvJViewModel) {
 }
 
 /**
- * Impresión del Jugador 1
+ * Impresión del Jugador
  */
 @Composable
-fun PintarJugador1(cycle: Boolean, VM: JvJViewModel) {
+fun PintarJugador1(cycle: Boolean, VM: JvIAViewModel) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy((-200).dp),
         modifier = Modifier.padding(20.dp)
@@ -142,39 +132,16 @@ fun PintarJugador1(cycle: Boolean, VM: JvJViewModel) {
             if (!(VM.Mjugador1.suTurno)) {
                 Image(
                     painter = painterResource(id = it.idDrawable),
-                    contentDescription = "Carta de J2",
+                    contentDescription = "Carta de La IA",
                     modifier = Modifier.size(300.dp)
                 )
             } else {
                 Image(
                     painter = painterResource(id = it.idDrawable), //painter = painterResource(id = R.drawable.facedown),
-                    contentDescription = "Carta de J2",
+                    contentDescription = "Carta de La IA",
                     modifier = Modifier.size(300.dp)
                 )
             }
         }
     }
 }
-
-/*
-Sustituido por una Screen completa
-@Composable
-fun pantallaVictoria(cycle: Boolean) {
-if (partidaFinalizada){
-    AlertDialog(onDismissRequest = { partidaFinalizada = false }, text = {
-        Column(
-            modifier = Modifier
-                .size(200.dp), verticalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Text(text = "Puntuación del jugador 1 (Arriba): ${Mjugador1.puntacion}")
-            Text(text = "Puntuación del jugador 2 (Abajo): ${IA.puntacion}")
-            Text(text = imprimirGanador())
-        }
-    }, confirmButton = {
-        Button(onClick = { partidaFinalizada = false}) {
-            Text(text = "Aceptar")
-        }
-    })
-}
-}
-*/
